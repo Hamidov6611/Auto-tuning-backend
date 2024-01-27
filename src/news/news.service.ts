@@ -24,7 +24,7 @@ export class NewsService {
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.newsRepository.find({});
-    const news = await this.newsRepository.find({ take: limit, skip: skip });
+    const news = await this.newsRepository.find({ take: limit, skip: skip, order: {createdAt: "DESC"} });
     return {
       count: count.length,
       data: news,

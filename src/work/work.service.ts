@@ -24,7 +24,7 @@ export class WorkService {
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.workRepository.find({});
-    const work = await this.workRepository.find({ take: limit, skip: skip });
+    const work = await this.workRepository.find({ take: limit, skip: skip, order: {createdAt: 'DESC'} });
     return {
       count: count.length,
       data: work,
