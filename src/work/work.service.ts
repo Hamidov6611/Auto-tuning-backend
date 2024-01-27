@@ -23,7 +23,12 @@ export class WorkService {
 
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
-    return await this.workRepository.find({ take: limit, skip: skip });
+    const count = await this.workRepository.find({});
+    const work = await this.workRepository.find({ take: limit, skip: skip });
+    return {
+      count: count.length,
+      data: work,
+    };
   }
 
   async findOne(id: number) {
@@ -34,8 +39,8 @@ export class WorkService {
     });
   }
 
-  update(id: number, updateWorkDto: UpdateWorkDto) {
-    return this.workRepository.update(id, updateWorkDto);
+  async update(id: number, updateWorkDto: UpdateWorkDto) {
+    return await this.workRepository.update(id, updateWorkDto);
   }
 
   async remove(id: number) {

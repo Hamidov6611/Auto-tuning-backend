@@ -23,7 +23,12 @@ export class NewsService {
 
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
-    return await this.newsRepository.find({ take: limit, skip: skip });
+    const count = await this.newsRepository.find({});
+    const news = await this.newsRepository.find({ take: limit, skip: skip });
+    return {
+      count: count.length,
+      data: news,
+    };
   }
 
   async findOne(id: number) {
@@ -39,7 +44,7 @@ export class NewsService {
   }
 
   async remove(id: number) {
-     await this.newsRepository.delete(id);
-     return 'deleted!'
+    await this.newsRepository.delete(id);
+    return 'deleted!';
   }
 }
