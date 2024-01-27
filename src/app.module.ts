@@ -8,6 +8,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { WorkModule } from './work/work.module';
 import { AdminModule } from './admin/admin.module';
 // import { AuthModule } from './auth/auth.module';
+import { FeedbackModule } from './feedback/feedback.module';
 import * as path from 'path';
 
 @Module({
@@ -34,6 +35,7 @@ import * as path from 'path';
       }),
       inject: [ConfigService],
     }),
+    FeedbackModule,
   ],
   controllers: [AppController],
   providers: [AppService],

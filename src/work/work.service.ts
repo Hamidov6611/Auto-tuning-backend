@@ -24,7 +24,11 @@ export class WorkService {
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.workRepository.find({});
-    const work = await this.workRepository.find({ take: limit, skip: skip, order: {createdAt: 'DESC'} });
+    const work = await this.workRepository.find({
+      take: limit,
+      skip: skip,
+      order: { createdAt: 'DESC' },
+    });
     return {
       count: count.length,
       data: work,
@@ -32,9 +36,14 @@ export class WorkService {
   }
 
   async findOne(id: number) {
-    return await this.workRepository.find({
+    const numericId = parseInt(id as any, 10);
+    if (isNaN(numericId)) {
+      throw new Error('Invalid ID format');
+    }
+
+    return await this.workRepository.findOne({
       where: {
-        id,
+        id: numericId,
       },
     });
   }
@@ -46,5 +55,17 @@ export class WorkService {
   async remove(id: number) {
     await this.workRepository.delete(id);
     return 'deleted!';
+  }
+  async searchWorks(query: string) {
+    const works = await this.workRepository
+      .createQueryBuilder('work')
+      .where('LOWER(work.title) LIKE LOWER(:query)', { query: `%${query}%` })
+      .orWhere('LOWER(work.desc) LIKE LOWER(:query)', { query: `%${query}%` })
+      .getMany();
+
+    return {
+      count: works.length,
+      data: works,
+    };
   }
 }
