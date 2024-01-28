@@ -9,6 +9,8 @@ import { WorkModule } from './work/work.module';
 import { AdminModule } from './admin/admin.module';
 // import { AuthModule } from './auth/auth.module';
 import { FeedbackModule } from './feedback/feedback.module';
+import { CategoryModule } from './category/category.module';
+import { ServiceModule } from './service/service.module';
 import * as path from 'path';
 
 @Module({
@@ -36,6 +38,8 @@ import * as path from 'path';
       inject: [ConfigService],
     }),
     FeedbackModule,
+    CategoryModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

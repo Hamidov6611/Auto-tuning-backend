@@ -23,8 +23,6 @@ export class WorkController {
   @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
   create(@UploadedFiles() files, @Body() createWorkDto: CreateWorkDto) {
     const { img } = files;
-    console.log(img);
-    console.log(createWorkDto);
     return this.workService.create(createWorkDto, img[0]);
   }
 
