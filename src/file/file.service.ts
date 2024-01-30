@@ -8,6 +8,7 @@ import * as fs from 'fs';
 export enum FileType {
   AUDIO = 'audio',
   IMAGE = 'image',
+  VIDEO = 'video'
 }
 @Injectable()
 export class FileService {
