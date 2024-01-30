@@ -32,6 +32,9 @@ export class CategoryService {
     const work = await this.categoryRepository.find({
       take: limit,
       skip: skip,
+      order: {
+        createdAt: 'ASC'
+      },
     });
     return {
       count: count.length,

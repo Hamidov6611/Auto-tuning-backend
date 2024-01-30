@@ -1,4 +1,15 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFiles,
+  Query,
+} from '@nestjs/common';
 import { ServiceService } from './service.service';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
@@ -14,7 +25,14 @@ export class ServiceController {
     const { img } = files;
     return this.serviceService.create(createServiceDto, img[0]);
   }
-
+  @Get('find')
+  findByCategory(@Query('id') id: number) {
+    return this.serviceService.findByCategory(id);
+  }
+  @Get(`all`)
+  allService() {
+    return this.serviceService.allService();
+  }
   @Get()
   findAll(@Query('page') page: number, @Query('limit') limit: number) {
     return this.serviceService.findAll(page, limit);
@@ -34,4 +52,6 @@ export class ServiceController {
   remove(@Param('id') id: string) {
     return this.serviceService.remove(+id);
   }
+
+ 
 }

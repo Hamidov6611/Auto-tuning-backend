@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { UpdateServiceDto } from './dto/update-service.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -42,6 +42,7 @@ export class ServiceService {
   }
 
   async findOne(id: number) {
+    console.log(id);
     return await this.serviceRepository.findOne({
       where: {
         id,
@@ -56,5 +57,28 @@ export class ServiceService {
   async remove(id: number) {
     await this.serviceRepository.delete(id);
     return 'Deleted successfully';
+  }
+
+  async findByCategory(id: number) {
+    try {
+      console.log(id);
+      const res = await this.serviceRepository.find({
+        where: {
+          category: { id },
+        },
+      });
+      if (!res) {
+        throw new BadRequestException('This service not found!');
+      }
+      console.log(res);
+      return res;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async allService() {
+    const service = await this.serviceRepository.find({});
+    return service;
   }
 }
