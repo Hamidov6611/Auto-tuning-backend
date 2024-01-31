@@ -15,6 +15,7 @@ export class AdminService {
   ) {}
 
   async create(createAdminDto: CreateAdminDto) {
+    console.log(createAdminDto);
     const existuser = await this.adminRepository.findOne({
       where: {
         email: createAdminDto.email,
@@ -24,6 +25,7 @@ export class AdminService {
     if (existuser) throw new BadRequestException('This email already exist');
 
     const admin = await this.adminRepository.save({
+      username: createAdminDto.username,
       email: createAdminDto.email,
       password: await argon2.hash(createAdminDto.password),
     });
@@ -35,5 +37,26 @@ export class AdminService {
 
   async findOne(email: string) {
     return await this.adminRepository.findOne({ where: { email } });
+  }
+
+  async login(user: { username: string; password: string }) {
+    const admin = await this.adminRepository.findOne({
+      where: {
+        username: user.username,
+      },
+    });
+
+    console.log(admin);
+
+    const isAdmin = await argon2.verify(admin.password, user.password);
+
+    if (!isAdmin) throw new BadRequestException('This admin not found!');
+
+    const token = this.jwtService.sign({
+      username: admin.username,
+      email: admin.email,
+    });
+
+    return { token };
   }
 }

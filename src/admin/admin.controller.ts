@@ -10,4 +10,9 @@ export class AdminController {
   create(@Body() createAdminDto: CreateAdminDto) {
     return this.adminService.create(createAdminDto);
   }
+
+  @Post('login')
+  login(@Body() username: { username: string; password: string }) {
+    return this.adminService.login(username);
+  }
 }
