@@ -1,4 +1,16 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseInterceptors, UploadedFiles, Query, UseGuards } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  UseInterceptors,
+  UploadedFiles,
+  Query,
+  UseGuards,
+} from '@nestjs/common';
 import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
@@ -10,20 +22,17 @@ export class NewsController {
   constructor(private readonly newsService: NewsService) {}
 
   @Post('add')
-  @UseInterceptors(FileFieldsInterceptor([
-    { name: 'img', maxCount: 1 },
-    ]))
-  create(@UploadedFiles() files,@Body() createNewsDto: CreateNewsDto) {
-    const {img} = files
-    console.log(img)
-    console.log(createNewsDto)
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
+  create(@UploadedFiles() files, @Body() createNewsDto: CreateNewsDto) {
+    const { img } = files;
+    console.log(img);
+    console.log(createNewsDto);
     return this.newsService.create(createNewsDto, img[0]);
   }
 
   @Get()
   // @UseGuards(JwtAuthGuard)
-  findAll(@Query('page') page: number,
-  @Query('limit') limit: number,) {
+  findAll(@Query('page') page: number, @Query('limit') limit: number) {
     return this.newsService.findAll(page, limit);
   }
 
@@ -34,6 +43,7 @@ export class NewsController {
 
   @Patch(':id')
   update(@Param('id') id: number, @Body() updateNewsDto: UpdateNewsDto) {
+    console.log(updateNewsDto);
     return this.newsService.update(id, updateNewsDto);
   }
 

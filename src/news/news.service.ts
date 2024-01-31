@@ -43,13 +43,18 @@ export class NewsService {
     });
   }
 
-  async update(id: number, updateNewsDto: UpdateNewsDto) {
-    const news = await this.newsRepository.findOne({
+  async update(id: number, updateNewsDto: UpdateNewsDto): Promise<News> {
+    const result = await this.newsRepository.update(id, updateNewsDto);
+
+    console.log(updateNewsDto)
+
+    if (result.affected === 0) {
+      throw new NotFoundException(`News with ID "${id}" not found`);
+    }
+
+    return this.newsRepository.findOne({
       where: { id },
     });
-
-    if (!news) throw new NotFoundException('This category are not found');
-    return await this.newsRepository.update(id, updateNewsDto);
   }
 
   async remove(id: number) {
