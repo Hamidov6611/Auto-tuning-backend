@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -24,7 +24,11 @@ export class NewsService {
   async findAll(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.newsRepository.find({});
-    const news = await this.newsRepository.find({ take: limit, skip: skip, order: {createdAt: "DESC"} });
+    const news = await this.newsRepository.find({
+      take: limit,
+      skip: skip,
+      order: { createdAt: 'DESC' },
+    });
     return {
       count: count.length,
       data: news,
@@ -39,8 +43,13 @@ export class NewsService {
     });
   }
 
-  update(id: number, updateNewsDto: UpdateNewsDto) {
-    return this.newsRepository.update(id, updateNewsDto);
+  async update(id: number, updateNewsDto: UpdateNewsDto) {
+    const news = await this.newsRepository.findOne({
+      where: { id },
+    });
+
+    if (!news) throw new NotFoundException('This category are not found');
+    return await this.newsRepository.update(id, updateNewsDto);
   }
 
   async remove(id: number) {
