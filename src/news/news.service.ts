@@ -43,18 +43,22 @@ export class NewsService {
     });
   }
 
-  async update(id: number, updateNewsDto: UpdateNewsDto): Promise<News> {
-    const result = await this.newsRepository.update(id, updateNewsDto);
-
-    console.log(updateNewsDto)
-
-    if (result.affected === 0) {
-      throw new NotFoundException(`News with ID "${id}" not found`);
+  async update(id: number, updateNewsDto: UpdateNewsDto, picture: any) {
+    if (picture) {
+      const picturePath = this.fileService.updateFile(
+        FileType.IMAGE,
+        picture,
+        updateNewsDto.img,
+      );
+      const news = await this.newsRepository.update(
+        { id },
+        { ...updateNewsDto, img: picturePath },
+      );
+      return news;
+    } else {
+      const result = await this.newsRepository.update({ id }, updateNewsDto);
+      return result;
     }
-
-    return this.newsRepository.findOne({
-      where: { id },
-    });
   }
 
   async remove(id: number) {

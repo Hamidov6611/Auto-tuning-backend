@@ -15,7 +15,6 @@ import { NewsService } from './news.service';
 import { CreateNewsDto } from './dto/create-news.dto';
 import { UpdateNewsDto } from './dto/update-news.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 
 @Controller('news')
 export class NewsController {
@@ -30,6 +29,17 @@ export class NewsController {
     return this.newsService.create(createNewsDto, img[0]);
   }
 
+  @Patch(':id')
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
+  update(
+    @Body() createNewsDto: CreateNewsDto,
+    @Param('id') id: number,
+    @UploadedFiles() files,
+  ) {
+    const { img } = files;
+    return this.newsService.update(id, createNewsDto, img ? img[0] : '');
+  }
+
   @Get()
   // @UseGuards(JwtAuthGuard)
   findAll(@Query('page') page: number, @Query('limit') limit: number) {
@@ -39,12 +49,6 @@ export class NewsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.newsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: number, @Body() updateNewsDto: UpdateNewsDto) {
-    console.log(updateNewsDto);
-    return this.newsService.update(id, updateNewsDto);
   }
 
   @Delete(':id')

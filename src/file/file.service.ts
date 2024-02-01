@@ -27,5 +27,22 @@ export class FileService {
     }
   }
 
+  updateFile(type: FileType, file, oldFilePath: string): string {
+    try {
+      // Eski faylni o'chirish
+      if (oldFilePath) {
+        const fullPath = path.resolve(__dirname, '..', '..', 'uploads', oldFilePath);
+        if (fs.existsSync(fullPath)) {
+          fs.unlinkSync(fullPath);
+        }
+      }
+
+      // Yangi faylni yaratish
+      return this.createFile(type, file);
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+  }
+
   // ...removeFile va boshqa metodlar
 }
