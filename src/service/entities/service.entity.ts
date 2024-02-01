@@ -1,4 +1,3 @@
-import { IsOptional } from 'class-validator';
 import { Category } from 'src/category/entities/category.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 

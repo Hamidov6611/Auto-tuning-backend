@@ -36,20 +36,30 @@ export class WorkService {
   }
 
   async findOne(id: number) {
-    const numericId = parseInt(id as any, 10);
-    if (isNaN(numericId)) {
-      throw new Error('Invalid ID format');
-    }
-
+    console.log(id)
     return await this.workRepository.findOne({
       where: {
-        id: numericId,
+        id,
       },
     });
   }
 
-  async update(id: number, updateWorkDto: UpdateWorkDto) {
-    return await this.workRepository.update(id, updateWorkDto);
+  async update(id: number, updateWorkDto: CreateWorkDto, picture: any) {
+    if (picture) {
+      const picturePath = this.fileService.updateFile(
+        FileType.IMAGE,
+        picture,
+        updateWorkDto.img,
+      );
+      const news = await this.workRepository.update(
+        { id },
+        { ...updateWorkDto, img: picturePath },
+      );
+      return news;
+    } else {
+      const result = await this.workRepository.update({ id }, updateWorkDto);
+      return result;
+    }
   }
 
   async remove(id: number) {

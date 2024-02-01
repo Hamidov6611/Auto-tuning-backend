@@ -43,8 +43,14 @@ export class WorkController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateWorkDto: UpdateWorkDto) {
-    return this.workService.update(+id, updateWorkDto);
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
+  update(
+    @Body() createWorkDto: CreateWorkDto,
+    @Param('id') id: number,
+    @UploadedFiles() files,
+  ) {
+    const { img } = files;
+    return this.workService.update(id, createWorkDto, img ? img[0] : '');
   }
 
   @Delete(':id')
