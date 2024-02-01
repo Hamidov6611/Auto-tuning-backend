@@ -17,6 +17,11 @@ export class CategoryController {
     return this.categoryService.findAll(page, limit);
   }
 
+  @Get('all')
+  allCategory() {
+    return this.categoryService.allCategory()
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.categoryService.findOne(+id);

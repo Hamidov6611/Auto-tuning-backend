@@ -47,13 +47,32 @@ export class ServiceService {
       where: {
         id,
       },
+      relations: {
+        category: true,
+      },
     });
   }
 
-  async update(id: number, updateServiceDto: UpdateServiceDto) {
-    return await this.serviceRepository.update(id, updateServiceDto);
+  async update(id: number, updateServiceDto: UpdateServiceDto, picture: any) {
+    if (picture) {
+      const picturePath = this.fileService.updateFile(
+        FileType.IMAGE,
+        picture,
+        updateServiceDto.img,
+      );
+      const service = await this.serviceRepository.update(
+        { id },
+        { ...updateServiceDto, img: picturePath },
+      );
+      return service;
+    } else {
+      const result = await this.serviceRepository.update(
+        { id },
+        updateServiceDto,
+      );
+      return result;
+    }
   }
-
   async remove(id: number) {
     await this.serviceRepository.delete(id);
     return 'Deleted successfully';

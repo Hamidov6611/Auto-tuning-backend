@@ -44,14 +44,18 @@ export class ServiceController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateServiceDto: UpdateServiceDto) {
-    return this.serviceService.update(+id, updateServiceDto);
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
+  update(
+    @Body() updateServiceDto: UpdateServiceDto,
+    @Param('id') id: number,
+    @UploadedFiles() files,
+  ) {
+    const { img } = files;
+    return this.serviceService.update(id, updateServiceDto, img ? img[0] : '');
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.serviceService.remove(+id);
   }
-
- 
 }
