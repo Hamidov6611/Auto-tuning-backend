@@ -11,6 +11,7 @@ import { AdminModule } from './admin/admin.module';
 import { FeedbackModule } from './feedback/feedback.module';
 import { CategoryModule } from './category/category.module';
 import { ServiceModule } from './service/service.module';
+import { CallModule } from './call/call.module';
 import * as path from 'path';
 
 @Module({
@@ -32,7 +33,7 @@ import * as path from 'path';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: false,
+        synchronize: true,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
@@ -40,6 +41,7 @@ import * as path from 'path';
     FeedbackModule,
     CategoryModule,
     ServiceModule,
+    CallModule,
   ],
   controllers: [AppController],
   providers: [AppService],
