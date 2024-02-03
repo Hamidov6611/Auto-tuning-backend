@@ -70,7 +70,7 @@ export class WorkService {
     const works = await this.workRepository
       .createQueryBuilder('work')
       .where('LOWER(work.title) LIKE LOWER(:query)', { query: `%${query}%` })
-      .orWhere('LOWER(work.desc) LIKE LOWER(:query)', { query: `%${query}%` })
+      .orWhere('LOWER(work.description) LIKE LOWER(:query)', { query: `%${query}%` })
       .getMany();
 
     return {

@@ -9,7 +9,7 @@ export class News {
   title: string;
 
   @Column()
-  desc: string;
+  description:string;
 
   @Column()
   img: string;

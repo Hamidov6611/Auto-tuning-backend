@@ -1,4 +1,10 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
 @Entity()
 export class Work {
@@ -9,7 +15,7 @@ export class Work {
   title: string;
 
   @Column()
-  desc: string;
+  description: string;
 
   @Column()
   img: string;

@@ -18,7 +18,7 @@ export class Service {
 
   // @Column()
   // @IsOptional()
-  // desc: string
+  // description:string
 
   @Column()
   price: number

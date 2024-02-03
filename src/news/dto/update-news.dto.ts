@@ -11,7 +11,7 @@ export class UpdateNewsDto {
   @IsNotEmpty()
   @IsString()
   @MinLength(5)
-  desc: string;
+  description:string;
 
   @IsNotEmpty()
   img: string;

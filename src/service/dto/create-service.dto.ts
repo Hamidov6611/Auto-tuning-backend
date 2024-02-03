@@ -17,5 +17,5 @@ export class CreateServiceDto {
   price: number;
 
 //   @IsString()
-//   desc: string;
+//   description:string;
 }
