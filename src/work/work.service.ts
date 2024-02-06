@@ -36,7 +36,7 @@ export class WorkService {
   }
 
   async findOne(id: number) {
-    console.log(id)
+    console.log(id);
     return await this.workRepository.findOne({
       where: {
         id,
@@ -63,6 +63,8 @@ export class WorkService {
   }
 
   async remove(id: number) {
+    const work = await this.workRepository.findOne({ where: { id } });
+    this.fileService.removeFile(work.img)
     await this.workRepository.delete(id);
     return 'deleted!';
   }
@@ -70,7 +72,9 @@ export class WorkService {
     const works = await this.workRepository
       .createQueryBuilder('work')
       .where('LOWER(work.title) LIKE LOWER(:query)', { query: `%${query}%` })
-      .orWhere('LOWER(work.description) LIKE LOWER(:query)', { query: `%${query}%` })
+      .orWhere('LOWER(work.description) LIKE LOWER(:query)', {
+        query: `%${query}%`,
+      })
       .getMany();
 
     return {

@@ -5,12 +5,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Service } from './entities/service.entity';
 import { Repository } from 'typeorm';
 import { FileService, FileType } from 'src/file/file.service';
+import { Category } from 'src/category/entities/category.entity';
 
 @Injectable()
 export class ServiceService {
   constructor(
     @InjectRepository(Service)
     private readonly serviceRepository: Repository<Service>,
+    @InjectRepository(Category)
+    private readonly categoryRepository: Repository<Category>,
     private fileService: FileService,
   ) {}
 
@@ -54,6 +57,12 @@ export class ServiceService {
   }
 
   async update(id: number, updateServiceDto: UpdateServiceDto, picture: any) {
+    const category = await this.categoryRepository.findOne({
+      where: { id: (updateServiceDto.category_id )},
+    });
+    console.log(updateServiceDto.category_id);
+    console.log(category);
+
     if (picture) {
       const picturePath = this.fileService.updateFile(
         FileType.IMAGE,
@@ -62,13 +71,22 @@ export class ServiceService {
       );
       const service = await this.serviceRepository.update(
         { id },
-        { ...updateServiceDto, img: picturePath },
+        {
+          title: updateServiceDto.title,
+          price: updateServiceDto.price,
+          category,
+          img: picturePath,
+        },
       );
       return service;
     } else {
       const result = await this.serviceRepository.update(
         { id },
-        updateServiceDto,
+        {
+          title: updateServiceDto.title,
+          price: updateServiceDto.price,
+          category,
+        },
       );
       return result;
     }
@@ -89,7 +107,6 @@ export class ServiceService {
       if (!res) {
         throw new BadRequestException('This service not found!');
       }
-      console.log(res);
       return res;
     } catch (error) {
       console.log(error);

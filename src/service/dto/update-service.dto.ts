@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
 import { Category } from 'src/category/entities/category.entity';
 
 export class UpdateServiceDto {
@@ -6,8 +6,13 @@ export class UpdateServiceDto {
   @IsOptional()
   title: string;
 
-  @IsNotEmpty()
-  category: Category;
+  // @IsOptional()
+  // category: Category;
+
+  @IsOptional()
+  @IsNumber()
+  category_id: number
+  
 
   @IsString()
   @IsOptional()

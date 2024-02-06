@@ -8,7 +8,7 @@ import * as fs from 'fs';
 export enum FileType {
   AUDIO = 'audio',
   IMAGE = 'image',
-  VIDEO = 'video'
+  VIDEO = 'video',
 }
 @Injectable()
 export class FileService {
@@ -31,7 +31,13 @@ export class FileService {
     try {
       // Eski faylni o'chirish
       if (oldFilePath) {
-        const fullPath = path.resolve(__dirname, '..', '..', 'uploads', oldFilePath);
+        const fullPath = path.resolve(
+          __dirname,
+          '..',
+          '..',
+          'uploads',
+          oldFilePath,
+        );
         if (fs.existsSync(fullPath)) {
           fs.unlinkSync(fullPath);
         }
@@ -43,6 +49,20 @@ export class FileService {
       throw new HttpException(e.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
-
+  removeFile(filePath: string): void {
+    try {
+      const fullPath = path.resolve(__dirname, '..', '..', 'uploads', filePath);
+      if (fs.existsSync(fullPath)) {
+        fs.unlinkSync(fullPath);
+      } else {
+        throw new Error(`Fayl topilmadi: ${filePath}`);
+      }
+    } catch (e) {
+      throw new HttpException(
+        `Faylni o'chirishda xato: ${e.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
   // ...removeFile va boshqa metodlar
 }

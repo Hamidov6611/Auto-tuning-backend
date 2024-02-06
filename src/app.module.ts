@@ -12,6 +12,8 @@ import { FeedbackModule } from './feedback/feedback.module';
 import { CategoryModule } from './category/category.module';
 import { ServiceModule } from './service/service.module';
 import { CallModule } from './call/call.module';
+import { AutoModelModule } from './auto-model/auto-model.module';
+import { AutoCatalogModule } from './auto-catalog/auto-catalog.module';
 import * as path from 'path';
 
 @Module({
@@ -33,7 +35,7 @@ import * as path from 'path';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: false,
+        synchronize: true,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
@@ -42,6 +44,8 @@ import * as path from 'path';
     CategoryModule,
     ServiceModule,
     CallModule,
+    AutoModelModule,
+    AutoCatalogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

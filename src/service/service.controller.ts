@@ -51,6 +51,7 @@ export class ServiceController {
     @UploadedFiles() files,
   ) {
     const { img } = files;
+    console.log(updateServiceDto, id)
     return this.serviceService.update(id, updateServiceDto, img ? img[0] : '');
   }
 
