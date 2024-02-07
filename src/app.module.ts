@@ -12,6 +12,8 @@ import { FeedbackModule } from './feedback/feedback.module';
 import { CategoryModule } from './category/category.module';
 import { ServiceModule } from './service/service.module';
 import { CallModule } from './call/call.module';
+import { AutoModelModule } from './auto-model/auto-model.module';
+import { AutoCatalogModule } from './auto-catalog/auto-catalog.module';
 import * as path from 'path';
 
 
@@ -43,6 +45,8 @@ import * as path from 'path';
     CategoryModule,
     ServiceModule,
     CallModule,
+    AutoModelModule,
+    AutoCatalogModule,
   ],
   controllers: [AppController],
   providers: [AppService],

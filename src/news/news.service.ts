@@ -62,6 +62,10 @@ export class NewsService {
   }
 
   async remove(id: number) {
+    const news = await this.newsRepository.findOne({
+      where: { id },
+    });
+    this.fileService.removeFile(news.img);
     await this.newsRepository.delete(id);
     return 'deleted!';
   }

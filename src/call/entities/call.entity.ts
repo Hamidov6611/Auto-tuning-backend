@@ -8,7 +8,7 @@ import {
 
 @Entity()
 export class Call {
-  @PrimaryGeneratedColumn({ name: 'fedd_id' })
+  @PrimaryGeneratedColumn({ name: 'call_id' })
   id: number;
 
   @Column()

@@ -2,6 +2,7 @@
 /dist
 /node_modules
 
+
 # Logs
 logs
 *.log
@@ -36,3 +37,12 @@ lerna-debug.log*
 
 # Environment Variables
 .env
+<<<<<<< HEAD
+=======
+
+# Folders
+/uploads
+
+
+
+>>>>>>> 757cd0c5d020b94b7b879232ed41c7c47256e925
