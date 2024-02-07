@@ -14,6 +14,7 @@ import { ServiceModule } from './service/service.module';
 import { CallModule } from './call/call.module';
 import * as path from 'path';
 
+
 @Module({
   imports: [
     NewsModule,
@@ -33,7 +34,7 @@ import * as path from 'path';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: true,
+        synchronize: false,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
