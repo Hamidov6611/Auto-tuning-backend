@@ -15,7 +15,6 @@ export class AdminService {
   ) {}
 
   async create(createAdminDto: CreateAdminDto) {
-    console.log(createAdminDto);
     const existuser = await this.adminRepository.findOne({
       where: {
         email: createAdminDto.email,
@@ -46,7 +45,6 @@ export class AdminService {
       },
     });
 
-    console.log(admin);
 
     const isAdmin = await argon2.verify(admin.password, user.password);
 

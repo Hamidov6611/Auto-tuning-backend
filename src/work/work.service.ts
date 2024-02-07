@@ -36,7 +36,6 @@ export class WorkService {
   }
 
   async findOne(id: number) {
-    console.log(id);
     return await this.workRepository.findOne({
       where: {
         id,

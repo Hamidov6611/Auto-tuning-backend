@@ -33,8 +33,12 @@ export class AutoCatalogController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAutoCatalogDto: UpdateAutoCatalogDto) {
-    return this.autoCatalogService.update(+id, updateAutoCatalogDto);
+  @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }, { name: 'video', maxCount: 1 },]))
+  update(@UploadedFiles() files, @Param('id') id: number, @Body() updateAutoCatalogDto: UpdateAutoCatalogDto) {
+    const { img, video } = files;
+    const imageFile = img ? img[0] : null;
+    const videoFile = video ? video[0] : null;
+    return this.autoCatalogService.update(id, updateAutoCatalogDto, imageFile, videoFile);
   }
 
   @Delete(':id')

@@ -45,7 +45,6 @@ export class ServiceService {
   }
 
   async findOne(id: number) {
-    console.log(id);
     return await this.serviceRepository.findOne({
       where: {
         id,
@@ -60,8 +59,7 @@ export class ServiceService {
     const category = await this.categoryRepository.findOne({
       where: { id: (updateServiceDto.category_id )},
     });
-    console.log(updateServiceDto.category_id);
-    console.log(category);
+    
 
     if (picture) {
       const picturePath = this.fileService.updateFile(
@@ -98,7 +96,6 @@ export class ServiceService {
 
   async findByCategory(id: number) {
     try {
-      console.log(id);
       const res = await this.serviceRepository.find({
         where: {
           category: { id },

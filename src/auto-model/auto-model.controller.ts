@@ -15,6 +15,11 @@ export class AutoModelController {
     return this.autoModelService.create(createAutoModelDto, img[0]);
   }
 
+  @Get('model')
+  getAllModel(){
+    return this.autoModelService.getAllModel()
+  }
+
   @Get()
   findAll(@Query("page") page: number, @Query("limit") limit: number) {
     return this.autoModelService.findAll(page, limit);

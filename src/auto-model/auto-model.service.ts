@@ -38,6 +38,10 @@ export class AutoModelService {
     };
   }
 
+  async getAllModel() {
+    return await this.autoModelRepository.find({});
+  }
+
   async findOne(id: number) {
     return await this.autoModelRepository.findOne({ where: { id } });
   }
@@ -67,6 +71,8 @@ export class AutoModelService {
   }
 
   async remove(id: number) {
+    const model = await this.autoModelRepository.findOne({ where: { id } });
+    this.fileService.removeFile(model.img);
     return await this.autoModelRepository.delete(id);
   }
 }

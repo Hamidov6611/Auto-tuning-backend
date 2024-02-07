@@ -16,13 +16,17 @@ export class AutoCatalogService {
     private readonly autoModelRepository: Repository<AutoModel>,
     private fileService: FileService,
   ) {}
-  async create(createAutoCatalogDto: CreateAutoCatalogDto, picture: any, video: any) {
+  async create(
+    createAutoCatalogDto: CreateAutoCatalogDto,
+    picture: any,
+    video: any,
+  ) {
     const picturePath = this.fileService.createFile(FileType.IMAGE, picture);
-    const videoPath = this.fileService.createFile(FileType.VIDEO, video)
+    const videoPath = this.fileService.createFile(FileType.VIDEO, video);
     const catalog = await this.catalogRepository.save({
       ...createAutoCatalogDto,
       img: picturePath,
-      video: videoPath
+      video: videoPath,
     });
 
     return catalog;
@@ -34,7 +38,8 @@ export class AutoCatalogService {
     const catalog = await this.catalogRepository.find({
       take: limit,
       skip: skip,
-      order: { createdAt: 'DESC' }, relations: {model: true}
+      order: { createdAt: 'DESC' },
+      relations: { model: true },
     });
 
     return {
@@ -44,27 +49,91 @@ export class AutoCatalogService {
   }
 
   async getCatalogByModel(modelId: string) {
-    const catalog = await this.catalogRepository.find({relations: {model: true}})
+    const catalog = await this.catalogRepository.find({
+      relations: { model: true },
+    });
 
-    let a = catalog?.map(c => {
-      if(c?.model?.id == parseInt(modelId)) {
-        return c
-      }else {
-        throw new BadRequestException("This catalogs not found")
+    let a = catalog?.map((c) => {
+      if (c?.model?.id == parseInt(modelId)) {
+        return c;
+      } else {
+        throw new BadRequestException('This catalogs not found');
       }
-    })
-    return a
+    });
+    return a;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} autoCatalog`;
+  async findOne(id: number) {
+    return await this.catalogRepository.findOne({
+      where: { id },
+      relations: { model: true },
+    });
   }
 
-  update(id: number, updateAutoCatalogDto: UpdateAutoCatalogDto) {
-    return `This action updates a #${id} autoCatalog`;
+  async update(
+    id: number,
+    updateAutoCatalogDto: UpdateAutoCatalogDto,
+    picture: any,
+    video: any,
+  ) {
+    try {
+      const model = await this.autoModelRepository.findOne({
+        where: { id: updateAutoCatalogDto.modelId },
+      });
+
+      if (picture || video) {
+        if (picture) {
+          const picturePath = this.fileService.updateFile(
+            FileType.IMAGE,
+            picture,
+            updateAutoCatalogDto.img,
+          );
+          await this.catalogRepository.update(
+            { id },
+            {
+              title: updateAutoCatalogDto.title,
+              price: updateAutoCatalogDto.price,
+              model,
+              img: picturePath,
+            },
+          );
+        }
+        if (video) {
+          const videoPath = this.fileService.updateFile(
+            FileType.VIDEO,
+            video,
+            updateAutoCatalogDto.video,
+          );
+          await this.catalogRepository.update(
+            { id },
+            {
+              title: updateAutoCatalogDto.title,
+              price: updateAutoCatalogDto.price,
+              model,
+              video: videoPath,
+            },
+          );
+        }
+      } else {
+        const result = await this.catalogRepository.update(
+          { id },
+          {
+            title: updateAutoCatalogDto.title,
+            price: updateAutoCatalogDto.price,
+            model,
+          },
+        );
+        return result;
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   async remove(id: number) {
-    return await this.catalogRepository.delete(id)
+    const catalog = await this.catalogRepository.findOne({ where: { id } });
+    this.fileService.removeFile(catalog.img);
+    this.fileService.removeFile(catalog.video);
+    return await this.catalogRepository.delete(id);
   }
 }

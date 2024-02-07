@@ -10,6 +10,10 @@ export class CreateAutoCatalogDto {
     @IsNotEmpty()
     img: string
 
+    @IsString()
+    @IsNotEmpty()
+    video: string
+
     @IsNotEmpty()
     model: AutoModel
 

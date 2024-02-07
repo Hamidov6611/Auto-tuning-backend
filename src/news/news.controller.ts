@@ -24,8 +24,6 @@ export class NewsController {
   @UseInterceptors(FileFieldsInterceptor([{ name: 'img', maxCount: 1 }]))
   create(@UploadedFiles() files, @Body() createNewsDto: CreateNewsDto) {
     const { img } = files;
-    console.log(img);
-    console.log(createNewsDto);
     return this.newsService.create(createNewsDto, img[0]);
   }
 
