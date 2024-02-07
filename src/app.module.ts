@@ -16,6 +16,7 @@ import { AutoModelModule } from './auto-model/auto-model.module';
 import { AutoCatalogModule } from './auto-catalog/auto-catalog.module';
 import * as path from 'path';
 
+
 @Module({
   imports: [
     NewsModule,
