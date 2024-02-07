@@ -16,8 +16,8 @@ export class AutoModel {
   catalog: AutoCatalog[]
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdat: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedat: Date;
 }
