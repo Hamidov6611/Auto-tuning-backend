@@ -57,9 +57,9 @@ export class ServiceService {
 
   async update(id: number, updateServiceDto: UpdateServiceDto, picture: any) {
     const category = await this.categoryRepository.findOne({
-      where: { id: (updateServiceDto.category_id )},
+      where: { id }
     });
-    
+    console.log(id);
 
     if (picture) {
       const picturePath = this.fileService.updateFile(
@@ -79,7 +79,7 @@ export class ServiceService {
       return service;
     } else {
       const result = await this.serviceRepository.update(
-        { id },
+        id,
         {
           title: updateServiceDto.title,
           price: updateServiceDto.price,

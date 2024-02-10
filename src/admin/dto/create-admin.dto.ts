@@ -1,4 +1,4 @@
-import { IsEmail, IsString, MinLength } from 'class-validator';
+import { IsEmail, IsISIN, IsString, MinLength } from 'class-validator';
 
 export class CreateAdminDto {
   @IsString()
