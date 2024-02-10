@@ -27,7 +27,7 @@ export class StockService {
     const stock = await this.stockRepository.find({
       take: limit,
       skip: skip,
-      order: { createdAt: 'DESC' },
+      order: { createdAt: 'ASC' },
     });
     return {
       count: count.length,
