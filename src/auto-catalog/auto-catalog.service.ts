@@ -38,7 +38,7 @@ export class AutoCatalogService {
     const catalog = await this.catalogRepository.find({
       take: limit,
       skip: skip,
-      order: { createdAt: 'DESC' },
+      order: { createdat: 'DESC' },
       relations: { model: true },
     });
 

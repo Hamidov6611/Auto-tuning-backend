@@ -25,8 +25,8 @@ export class AutoCatalog {
   price: number
 
   @CreateDateColumn()
-  createdAt: Date;
+  createdat: Date;
 
   @UpdateDateColumn()
-  updatedAt: Date;
+  updatedat: Date;
 }

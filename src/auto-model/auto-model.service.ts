@@ -29,7 +29,7 @@ export class AutoModelService {
     const model = await this.autoModelRepository.find({
       take: limit,
       skip: skip,
-      order: { createdAt: 'DESC' },
+      order: { createdat: 'DESC' },
     });
 
     return {
