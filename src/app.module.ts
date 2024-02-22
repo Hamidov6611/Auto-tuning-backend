@@ -15,6 +15,8 @@ import { CallModule } from './call/call.module';
 import { AutoModelModule } from './auto-model/auto-model.module';
 import { AutoCatalogModule } from './auto-catalog/auto-catalog.module';
 import { StockModule } from './stock/stock.module';
+import { BrandModule } from './brand/brand.module';
+import { CatalogModule } from './catalog/catalog.module';
 import * as path from 'path';
 
 
@@ -49,6 +51,8 @@ import * as path from 'path';
     AutoModelModule,
     AutoCatalogModule,
     StockModule,
+    BrandModule,
+    CatalogModule,
   ],
   controllers: [AppController],
   providers: [AppService],
