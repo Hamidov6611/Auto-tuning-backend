@@ -26,12 +26,17 @@ const stock_module_1 = require("./stock/stock.module");
 const brand_module_1 = require("./brand/brand.module");
 const catalog_module_1 = require("./catalog/catalog.module");
 const path = require("path");
+const throttler_1 = require("@nestjs/throttler");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            throttler_1.ThrottlerModule.forRoot([{
+                    ttl: 60,
+                    limit: 10,
+                }]),
             news_module_1.NewsModule,
             work_module_1.WorkModule,
             admin_module_1.AdminModule,
@@ -48,7 +53,7 @@ exports.AppModule = AppModule = __decorate([
                     username: configService.get('DB_USERNAME'),
                     password: configService.get('DB_PASSWORD'),
                     database: configService.get('DB_NAME'),
-                    synchronize: false,
+                    synchronize: true,
                     entities: [__dirname + `/**/*.entity{.js, .ts}`],
                 }),
                 inject: [config_1.ConfigService],

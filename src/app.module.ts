@@ -18,10 +18,14 @@ import { StockModule } from './stock/stock.module';
 import { BrandModule } from './brand/brand.module';
 import { CatalogModule } from './catalog/catalog.module';
 import * as path from 'path';
-
+import { ThrottlerModule } from '@nestjs/throttler';
 
 @Module({
   imports: [
+    ThrottlerModule.forRoot([{
+      ttl: 60,
+      limit: 10,
+    }]),
     NewsModule,
     WorkModule,
     AdminModule,
@@ -39,7 +43,7 @@ import * as path from 'path';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: false,
+        synchronize: true,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
