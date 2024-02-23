@@ -14,7 +14,7 @@ import { CreateFeedbackDto } from './dto/create-feedback.dto';
 export class FeedbackController {
   constructor(private readonly feedbackService: FeedbackService) {}
 
-  @Post()
+  @Post('secret')
   create(@Body() createFeedbackDto: CreateFeedbackDto) {
     return this.feedbackService.create(createFeedbackDto);
   }

@@ -32,7 +32,7 @@ let FeedbackController = class FeedbackController {
 };
 exports.FeedbackController = FeedbackController;
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('secret'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_feedback_dto_1.CreateFeedbackDto]),
