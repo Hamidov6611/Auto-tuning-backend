@@ -28,6 +28,7 @@
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
     "@nestjs/serve-static": "^4.0.0",
+    "@nestjs/throttler": "^5.1.2",
     "@nestjs/typeorm": "^10.0.1",
     "argon2": "^0.31.2",
     "class-transformer": "^0.5.1",
