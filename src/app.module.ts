@@ -18,14 +18,15 @@ import { StockModule } from './stock/stock.module';
 import { BrandModule } from './brand/brand.module';
 import { CatalogModule } from './catalog/catalog.module';
 import * as path from 'path';
-import { ThrottlerModule } from '@nestjs/throttler';
+import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
+import { APP_GUARD } from '@nestjs/core';
 
 @Module({
   imports: [
     ThrottlerModule.forRoot([{
       ttl: 60,
       limit: 10,
-    }]),
+    }]),   
     NewsModule,
     WorkModule,
     AdminModule,
@@ -59,6 +60,12 @@ import { ThrottlerModule } from '@nestjs/throttler';
     CatalogModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: ThrottlerGuard,
+    },
+  ],
 })
 export class AppModule {}

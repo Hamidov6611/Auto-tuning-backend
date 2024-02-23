@@ -26,6 +26,11 @@ export class BrandController {
     return this.brandService.findAll(page, limit);
   }
 
+  @Get('getAll')
+  getAll(@Query("catalog_id") catalog_id: number){
+    return this.brandService.getAll(catalog_id)
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.brandService.findOne(+id);

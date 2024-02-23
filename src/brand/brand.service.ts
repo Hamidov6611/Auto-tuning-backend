@@ -44,6 +44,14 @@ export class BrandService {
     };
   }
 
+  async getAll(id: number) {
+    const catalog = await this.catalogRepositiry.findOne({where: {id}})
+    console.log(catalog)
+    const brand = await this.brandRepository.find({where: {catalog: catalog}});
+    console.log(brand)
+    return brand
+  }
+
   async findOne(id: number) {
     return await this.brandRepository.findOne({
       where: { id },
@@ -55,7 +63,6 @@ export class BrandService {
     const catalog = await this.catalogRepositiry.findOne({
       where: { id: updateBrandDto?.catalog_id },
     });
-
 
     if (picture) {
       const picturePath = this.fileService.updateFile(
