@@ -11,6 +11,7 @@ export declare class CatalogService {
         img: string;
         title: string;
     } & Catalog>;
+    getByBrand(id: number): Promise<Catalog>;
     findAll(page: number, limit: number): Promise<{
         count: number;
         data: Catalog[];

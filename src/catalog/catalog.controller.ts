@@ -36,6 +36,11 @@ export class CatalogController {
     return this.catalogService.update(id, createCatlogDto, img ? img[0] : '');
   }
 
+  @Get('brand/:id')
+  getCatalogByBrand(@Param('id') id: number) {
+    return this.catalogService.getByBrand(id)
+  } 
+
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.catalogService.remove(+id);

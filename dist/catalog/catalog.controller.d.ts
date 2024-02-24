@@ -13,5 +13,6 @@ export declare class CatalogController {
     }>;
     findOne(id: string): Promise<import("./entities/catalog.entity").Catalog>;
     update(createCatlogDto: CreateCatalogDto, id: number, files: any): Promise<import("typeorm").UpdateResult>;
+    getCatalogByBrand(id: number): Promise<import("./entities/catalog.entity").Catalog>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

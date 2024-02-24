@@ -35,6 +35,9 @@ let CatalogController = class CatalogController {
         const { img } = files;
         return this.catalogService.update(id, createCatlogDto, img ? img[0] : '');
     }
+    getCatalogByBrand(id) {
+        return this.catalogService.getByBrand(id);
+    }
     remove(id) {
         return this.catalogService.remove(+id);
     }
@@ -74,6 +77,13 @@ __decorate([
     __metadata("design:paramtypes", [create_catalog_dto_1.CreateCatalogDto, Number, Object]),
     __metadata("design:returntype", void 0)
 ], CatalogController.prototype, "update", null);
+__decorate([
+    (0, common_1.Get)('brand/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], CatalogController.prototype, "getCatalogByBrand", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),

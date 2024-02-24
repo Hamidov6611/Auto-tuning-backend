@@ -31,6 +31,9 @@ let CatalogService = class CatalogService {
         });
         return catalog;
     }
+    async getByBrand(id) {
+        return await this.catalogRepository.findOne({ where: { id }, relations: { brand: true } });
+    }
     async findAll(page, limit) {
         const skip = (page - 1) * limit;
         const count = await this.catalogRepository.find({});
