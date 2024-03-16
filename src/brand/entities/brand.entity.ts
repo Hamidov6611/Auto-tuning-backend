@@ -1,3 +1,4 @@
+import { BrandModel } from 'src/brand-model/entities/brand-model.entity';
 import { Catalog } from 'src/catalog/entities/catalog.entity';
 import {
   Column,
@@ -21,9 +22,16 @@ export class Brand {
   @Column()
   img: string;
 
+  
+  @OneToMany(() => BrandModel, (brandModel) => brandModel.brand)
+  @JoinColumn({name: "brand_model_id"})
+  brandModel: BrandModel[]
+
   @ManyToOne(() => Catalog, (catalog) => catalog.brand)
   @JoinColumn({ name: 'catalog_id' })
   catalog: Catalog;
+
+  
 
   @CreateDateColumn()
   createdat: Date;

@@ -20,6 +20,13 @@ import { CatalogModule } from './catalog/catalog.module';
 import * as path from 'path';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { BrandModelModule } from './brand-model/brand-model.module';
+import { BrandYearModule } from './brand-year/brand-year.module';
+import { BrandEngineModule } from './brand-engine/brand-engine.module';
+import { EcoModule } from './eco/eco.module';
+import { Stage1Module } from './stage1/stage1.module';
+import { Stage2Module } from './stage2/stage2.module';
+import { TransmissionModule } from './transmission/transmission.module';
 
 @Module({
   imports: [
@@ -44,7 +51,7 @@ import { APP_GUARD } from '@nestjs/core';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: false,
+        synchronize: true,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
@@ -58,6 +65,13 @@ import { APP_GUARD } from '@nestjs/core';
     StockModule,
     BrandModule,
     CatalogModule,
+    BrandModelModule,
+    BrandYearModule,
+    BrandEngineModule,
+    EcoModule,
+    Stage1Module,
+    Stage2Module,
+    TransmissionModule,
   ],
   controllers: [AppController],
   providers: [

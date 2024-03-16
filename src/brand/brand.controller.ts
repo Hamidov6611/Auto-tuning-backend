@@ -3,7 +3,6 @@ import { BrandService } from './brand.service';
 import { CreateBrandDto } from './dto/create-brand.dto';
 import { UpdateBrandDto } from './dto/update-brand.dto';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { limits } from 'argon2';
 
 @Controller('brand')
 export class BrandController {

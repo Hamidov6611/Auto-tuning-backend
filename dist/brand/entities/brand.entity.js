@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Brand = void 0;
+const brand_model_entity_1 = require("../../brand-model/entities/brand-model.entity");
 const catalog_entity_1 = require("../../catalog/entities/catalog.entity");
 const typeorm_1 = require("typeorm");
 let Brand = class Brand {
@@ -27,6 +28,11 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Brand.prototype, "img", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => brand_model_entity_1.BrandModel, (brandModel) => brandModel.brand),
+    (0, typeorm_1.JoinColumn)({ name: "brand_model_id" }),
+    __metadata("design:type", Array)
+], Brand.prototype, "brandModel", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => catalog_entity_1.Catalog, (catalog) => catalog.brand),
     (0, typeorm_1.JoinColumn)({ name: 'catalog_id' }),
