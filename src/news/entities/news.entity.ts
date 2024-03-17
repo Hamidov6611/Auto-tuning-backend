@@ -5,10 +5,10 @@ export class News {
   @PrimaryGeneratedColumn({ name: 'news_id' })
   id: number;
 
-  @Column()
+  @Column({ nullable: false })
   title: string;
 
-  @Column()
+  @Column({nullable: false})
   description:string;
 
   @Column()
