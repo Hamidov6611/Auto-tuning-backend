@@ -53,9 +53,10 @@ let BrandService = class BrandService {
     }
     async getAll(id) {
         const catalog = await this.catalogRepositiry.findOne({ where: { id } });
-        console.log(catalog);
-        const brand = await this.brandRepository.find({ where: { catalog: catalog } });
-        console.log(brand);
+        const brand = await this.brandRepository.find({
+            where: { catalog: catalog },
+            order: { title: 'ASC' },
+        });
         return brand;
     }
     async findOne(id) {

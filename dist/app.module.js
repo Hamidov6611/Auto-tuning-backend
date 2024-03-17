@@ -35,6 +35,7 @@ const eco_module_1 = require("./eco/eco.module");
 const stage1_module_1 = require("./stage1/stage1.module");
 const stage2_module_1 = require("./stage2/stage2.module");
 const transmission_module_1 = require("./transmission/transmission.module");
+const rc_plus_module_1 = require("./rc-plus/rc-plus.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -61,7 +62,7 @@ exports.AppModule = AppModule = __decorate([
                     username: configService.get('DB_USERNAME'),
                     password: configService.get('DB_PASSWORD'),
                     database: configService.get('DB_NAME'),
-                    synchronize: true,
+                    synchronize: false,
                     entities: [__dirname + `/**/*.entity{.js, .ts}`],
                 }),
                 inject: [config_1.ConfigService],
@@ -82,6 +83,7 @@ exports.AppModule = AppModule = __decorate([
             stage1_module_1.Stage1Module,
             stage2_module_1.Stage2Module,
             transmission_module_1.TransmissionModule,
+            rc_plus_module_1.RcPlusModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

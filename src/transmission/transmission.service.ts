@@ -1,26 +1,65 @@
 import { Injectable } from '@nestjs/common';
 import { CreateTransmissionDto } from './dto/create-transmission.dto';
 import { UpdateTransmissionDto } from './dto/update-transmission.dto';
+import { BrandEngine } from 'src/brand-engine/entities/brand-engine.entity';
+import { Repository } from 'typeorm';
+import { Transmission } from './entities/transmission.entity';
+import { InjectRepository } from '@nestjs/typeorm';
 
 @Injectable()
 export class TransmissionService {
-  create(createTransmissionDto: CreateTransmissionDto) {
-    return 'This action adds a new transmission';
+  constructor(
+    @InjectRepository(BrandEngine)
+    private readonly engineRepository: Repository<BrandEngine>,
+    @InjectRepository(Transmission)
+    private readonly transmissionRepositiry: Repository<Transmission>,
+  ) {}
+
+  async create(createTransmissionDto: CreateTransmissionDto) {
+    const engine = await this.engineRepository.findOne({
+      where: { id: createTransmissionDto.engine_id },
+    });
+    await this.transmissionRepositiry.save({
+      description: createTransmissionDto.description,
+      list: createTransmissionDto.list,
+      price: createTransmissionDto.price,
+      engine,
+    });
+    return 'added successfully';
   }
 
-  findAll() {
-    return `This action returns all transmission`;
+  async findAllByPageination(page: number, limit: number) {
+    const skip = (page - 1) * limit;
+    const count = await this.transmissionRepositiry.find({});
+    const transmission = await this.transmissionRepositiry.find({
+      take: limit,
+      skip: skip,
+      order: { createdat: 'ASC' },
+    });
+    return {
+      count: count.length,
+      data: transmission,
+    };
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} transmission`;
+  async findAll() {
+    return await this.transmissionRepositiry.find({
+      relations: { engine: true },
+    });
   }
 
-  update(id: number, updateTransmissionDto: UpdateTransmissionDto) {
-    return `This action updates a #${id} transmission`;
+  async findOne(id: number) {
+    return await this.transmissionRepositiry.findOne({ where: { id } });
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} transmission`;
+  async update(id: number, updateTransmissionDto: UpdateTransmissionDto) {
+    return await this.transmissionRepositiry.update(
+      { id },
+      updateTransmissionDto,
+    );
+  }
+
+  async remove(id: number) {
+    return await this.transmissionRepositiry.delete(id);
   }
 }

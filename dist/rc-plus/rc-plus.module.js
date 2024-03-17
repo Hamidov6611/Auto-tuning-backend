@@ -6,21 +6,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransmissionModule = void 0;
+exports.RcPlusModule = void 0;
 const common_1 = require("@nestjs/common");
-const transmission_service_1 = require("./transmission.service");
-const transmission_controller_1 = require("./transmission.controller");
+const rc_plus_service_1 = require("./rc-plus.service");
+const rc_plus_controller_1 = require("./rc-plus.controller");
 const typeorm_1 = require("@nestjs/typeorm");
 const brand_engine_entity_1 = require("../brand-engine/entities/brand-engine.entity");
-const transmission_entity_1 = require("./entities/transmission.entity");
-let TransmissionModule = class TransmissionModule {
+const rc_plus_entity_1 = require("./entities/rc-plus.entity");
+let RcPlusModule = class RcPlusModule {
 };
-exports.TransmissionModule = TransmissionModule;
-exports.TransmissionModule = TransmissionModule = __decorate([
+exports.RcPlusModule = RcPlusModule;
+exports.RcPlusModule = RcPlusModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([brand_engine_entity_1.BrandEngine, transmission_entity_1.Transmission])],
-        controllers: [transmission_controller_1.TransmissionController],
-        providers: [transmission_service_1.TransmissionService],
+        imports: [typeorm_1.TypeOrmModule.forFeature([brand_engine_entity_1.BrandEngine, rc_plus_entity_1.RcPlus])],
+        controllers: [rc_plus_controller_1.RcPlusController],
+        providers: [rc_plus_service_1.RcPlusService],
     })
-], TransmissionModule);
-//# sourceMappingURL=transmission.module.js.map
+], RcPlusModule);
+//# sourceMappingURL=rc-plus.module.js.map

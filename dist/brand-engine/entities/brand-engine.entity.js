@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.BrandEngine = void 0;
 const brand_year_entity_1 = require("../../brand-year/entities/brand-year.entity");
 const eco_entity_1 = require("../../eco/entities/eco.entity");
+const rc_plus_entity_1 = require("../../rc-plus/entities/rc-plus.entity");
 const stage1_entity_1 = require("../../stage1/entities/stage1.entity");
 const stage2_entity_1 = require("../../stage2/entities/stage2.entity");
 const transmission_entity_1 = require("../../transmission/entities/transmission.entity");
@@ -47,6 +48,11 @@ __decorate([
     (0, typeorm_1.JoinColumn)({ name: "transmission_id" }),
     __metadata("design:type", transmission_entity_1.Transmission)
 ], BrandEngine.prototype, "transmission", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => rc_plus_entity_1.RcPlus, (rc) => rc.engine),
+    (0, typeorm_1.JoinColumn)({ name: "engine_id" }),
+    __metadata("design:type", rc_plus_entity_1.RcPlus)
+], BrandEngine.prototype, "rc_plus", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => brand_year_entity_1.BrandYear, (year) => year.engine),
     (0, typeorm_1.JoinColumn)({ name: 'year_id' }),

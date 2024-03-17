@@ -12,80 +12,80 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransmissionController = void 0;
+exports.RcPlusController = void 0;
 const common_1 = require("@nestjs/common");
-const transmission_service_1 = require("./transmission.service");
-const create_transmission_dto_1 = require("./dto/create-transmission.dto");
-const update_transmission_dto_1 = require("./dto/update-transmission.dto");
-let TransmissionController = class TransmissionController {
-    constructor(transmissionService) {
-        this.transmissionService = transmissionService;
+const rc_plus_service_1 = require("./rc-plus.service");
+const create_rc_plus_dto_1 = require("./dto/create-rc-plus.dto");
+const update_rc_plus_dto_1 = require("./dto/update-rc-plus.dto");
+let RcPlusController = class RcPlusController {
+    constructor(rcPlusService) {
+        this.rcPlusService = rcPlusService;
     }
-    create(createTransmissionDto) {
-        return this.transmissionService.create(createTransmissionDto);
+    create(createRcPlusDto) {
+        return this.rcPlusService.create(createRcPlusDto);
     }
     findAllByPageination(page, limit) {
-        return this.transmissionService.findAllByPageination(page, limit);
+        return this.rcPlusService.findAllByPageination(page, limit);
     }
     findAll() {
-        return this.transmissionService.findAll();
+        return this.rcPlusService.findAll();
     }
     findOne(id) {
-        return this.transmissionService.findOne(+id);
+        return this.rcPlusService.findOne(+id);
     }
-    update(id, updateTransmissionDto) {
-        return this.transmissionService.update(+id, updateTransmissionDto);
+    update(id, updateRcPlusDto) {
+        return this.rcPlusService.update(+id, updateRcPlusDto);
     }
     remove(id) {
-        return this.transmissionService.remove(+id);
+        return this.rcPlusService.remove(+id);
     }
 };
-exports.TransmissionController = TransmissionController;
+exports.RcPlusController = RcPlusController;
 __decorate([
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_transmission_dto_1.CreateTransmissionDto]),
+    __metadata("design:paramtypes", [create_rc_plus_dto_1.CreateRcPlusDto]),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "create", null);
+], RcPlusController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)("pagination"),
-    __param(0, (0, common_1.Query)("page")),
-    __param(1, (0, common_1.Query)("limit")),
+    (0, common_1.Get)('pagination'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "findAllByPageination", null);
+], RcPlusController.prototype, "findAllByPageination", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "findAll", null);
+], RcPlusController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "findOne", null);
+], RcPlusController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_transmission_dto_1.UpdateTransmissionDto]),
+    __metadata("design:paramtypes", [String, update_rc_plus_dto_1.UpdateRcPlusDto]),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "update", null);
+], RcPlusController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
-], TransmissionController.prototype, "remove", null);
-exports.TransmissionController = TransmissionController = __decorate([
-    (0, common_1.Controller)('transmission'),
-    __metadata("design:paramtypes", [transmission_service_1.TransmissionService])
-], TransmissionController);
-//# sourceMappingURL=transmission.controller.js.map
+], RcPlusController.prototype, "remove", null);
+exports.RcPlusController = RcPlusController = __decorate([
+    (0, common_1.Controller)('rc-plus'),
+    __metadata("design:paramtypes", [rc_plus_service_1.RcPlusService])
+], RcPlusController);
+//# sourceMappingURL=rc-plus.controller.js.map

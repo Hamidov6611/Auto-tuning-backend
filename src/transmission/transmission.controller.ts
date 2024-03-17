@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
 import { TransmissionService } from './transmission.service';
 import { CreateTransmissionDto } from './dto/create-transmission.dto';
 import { UpdateTransmissionDto } from './dto/update-transmission.dto';
@@ -10,6 +10,11 @@ export class TransmissionController {
   @Post()
   create(@Body() createTransmissionDto: CreateTransmissionDto) {
     return this.transmissionService.create(createTransmissionDto);
+  }
+
+  @Get("pagination")
+  findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
+    return this.transmissionService.findAllByPageination(page, limit);
   }
 
   @Get()

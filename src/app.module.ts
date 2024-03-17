@@ -27,6 +27,7 @@ import { EcoModule } from './eco/eco.module';
 import { Stage1Module } from './stage1/stage1.module';
 import { Stage2Module } from './stage2/stage2.module';
 import { TransmissionModule } from './transmission/transmission.module';
+import { RcPlusModule } from './rc-plus/rc-plus.module';
 
 @Module({
   imports: [
@@ -51,7 +52,7 @@ import { TransmissionModule } from './transmission/transmission.module';
         username: configService.get('DB_USERNAME'),
         password: configService.get('DB_PASSWORD'),
         database: configService.get('DB_NAME'),
-        synchronize: true,
+        synchronize: false,
         entities: [__dirname + `/**/*.entity{.js, .ts}`],
       }),
       inject: [ConfigService],
@@ -72,6 +73,7 @@ import { TransmissionModule } from './transmission/transmission.module';
     Stage1Module,
     Stage2Module,
     TransmissionModule,
+    RcPlusModule,
   ],
   controllers: [AppController],
   providers: [

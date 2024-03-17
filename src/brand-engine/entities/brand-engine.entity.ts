@@ -1,5 +1,6 @@
 import { BrandYear } from 'src/brand-year/entities/brand-year.entity';
 import { Eco } from 'src/eco/entities/eco.entity';
+import { RcPlus } from 'src/rc-plus/entities/rc-plus.entity';
 import { Stage1 } from 'src/stage1/entities/stage1.entity';
 import { Stage2 } from 'src/stage2/entities/stage2.entity';
 import { Transmission } from 'src/transmission/entities/transmission.entity';
@@ -37,6 +38,10 @@ export class BrandEngine {
   @OneToMany(() => Transmission, (transmission) => transmission.engine)
   @JoinColumn({name: "transmission_id"})
   transmission: Transmission
+
+  @OneToMany(() => RcPlus, (rc) => rc.engine)
+  @JoinColumn({name: "engine_id"})
+  rc_plus: RcPlus
 
   @ManyToOne(() => BrandYear, (year) => year.engine)
   @JoinColumn({ name: 'year_id' })

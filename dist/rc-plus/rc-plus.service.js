@@ -12,63 +12,64 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TransmissionService = void 0;
+exports.RcPlusService = void 0;
 const common_1 = require("@nestjs/common");
+const typeorm_1 = require("@nestjs/typeorm");
 const brand_engine_entity_1 = require("../brand-engine/entities/brand-engine.entity");
-const typeorm_1 = require("typeorm");
-const transmission_entity_1 = require("./entities/transmission.entity");
-const typeorm_2 = require("@nestjs/typeorm");
-let TransmissionService = class TransmissionService {
-    constructor(engineRepository, transmissionRepositiry) {
+const typeorm_2 = require("typeorm");
+const rc_plus_entity_1 = require("./entities/rc-plus.entity");
+let RcPlusService = class RcPlusService {
+    constructor(engineRepository, rcRepositiry) {
         this.engineRepository = engineRepository;
-        this.transmissionRepositiry = transmissionRepositiry;
+        this.rcRepositiry = rcRepositiry;
     }
-    async create(createTransmissionDto) {
+    async create(createRcPlusDto) {
         const engine = await this.engineRepository.findOne({
-            where: { id: createTransmissionDto.engine_id },
+            where: { id: createRcPlusDto.engine_id },
         });
-        await this.transmissionRepositiry.save({
-            description: createTransmissionDto.description,
-            list: createTransmissionDto.list,
-            price: createTransmissionDto.price,
+        await this.rcRepositiry.save({
             engine,
+            title: createRcPlusDto.title,
+            description: createRcPlusDto.description,
+            hero: createRcPlusDto.hero,
         });
         return 'added successfully';
     }
     async findAllByPageination(page, limit) {
         const skip = (page - 1) * limit;
-        const count = await this.transmissionRepositiry.find({});
-        const transmission = await this.transmissionRepositiry.find({
+        const count = await this.rcRepositiry.find({});
+        const rc = await this.rcRepositiry.find({
             take: limit,
             skip: skip,
             order: { createdat: 'ASC' },
         });
         return {
             count: count.length,
-            data: transmission,
+            data: rc,
         };
     }
     async findAll() {
-        return await this.transmissionRepositiry.find({
+        return await this.rcRepositiry.find({ relations: { engine: true } });
+    }
+    async findOne(id) {
+        return await this.rcRepositiry.findOne({
+            where: { id },
             relations: { engine: true },
         });
     }
-    async findOne(id) {
-        return await this.transmissionRepositiry.findOne({ where: { id } });
-    }
-    async update(id, updateTransmissionDto) {
-        return await this.transmissionRepositiry.update({ id }, updateTransmissionDto);
+    async update(id, updateRcPlusDto) {
+        return await this.rcRepositiry.update({ id }, updateRcPlusDto);
     }
     async remove(id) {
-        return await this.transmissionRepositiry.delete(id);
+        return await this.rcRepositiry.delete(id);
     }
 };
-exports.TransmissionService = TransmissionService;
-exports.TransmissionService = TransmissionService = __decorate([
+exports.RcPlusService = RcPlusService;
+exports.RcPlusService = RcPlusService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_2.InjectRepository)(brand_engine_entity_1.BrandEngine)),
-    __param(1, (0, typeorm_2.InjectRepository)(transmission_entity_1.Transmission)),
-    __metadata("design:paramtypes", [typeorm_1.Repository,
-        typeorm_1.Repository])
-], TransmissionService);
-//# sourceMappingURL=transmission.service.js.map
+    __param(0, (0, typeorm_1.InjectRepository)(brand_engine_entity_1.BrandEngine)),
+    __param(1, (0, typeorm_1.InjectRepository)(rc_plus_entity_1.RcPlus)),
+    __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository])
+], RcPlusService);
+//# sourceMappingURL=rc-plus.service.js.map
