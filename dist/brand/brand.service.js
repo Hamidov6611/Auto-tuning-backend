@@ -37,6 +37,13 @@ let BrandService = class BrandService {
         });
         return 'added successfully';
     }
+    async sortById(id) {
+        const models = await this.brandRepository.find({
+            where: { id },
+            relations: { brandModel: true },
+        });
+        return models;
+    }
     async findAll(page, limit) {
         const skip = (page - 1) * limit;
         const count = await this.brandRepository.find({});
@@ -50,6 +57,14 @@ let BrandService = class BrandService {
             count: count.length,
             data: catalogs,
         };
+    }
+    async sortByCategory(id) {
+        const catalog = await this.catalogRepositiry.findOne({
+            where: { id },
+            relations: { brand: true },
+        });
+        console.log(catalog);
+        return catalog?.brand;
     }
     async getAll(id) {
         const catalog = await this.catalogRepositiry.findOne({ where: { id } });

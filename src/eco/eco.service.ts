@@ -38,6 +38,7 @@ export class EcoService {
       take: limit,
       skip: skip,
       order: { createdat: 'ASC' },
+      relations: {engine: true}
     });
     return {
       count: count.length,

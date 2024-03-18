@@ -9,8 +9,9 @@ export declare class BrandYearController {
         count: number;
         data: import("./entities/brand-year.entity").BrandYear[];
     }>;
+    sortById(id: number): Promise<import("../brand-engine/entities/brand-engine.entity").BrandEngine[]>;
     findAll(): Promise<import("./entities/brand-year.entity").BrandYear[]>;
     findOne(id: string): Promise<import("./entities/brand-year.entity").BrandYear>;
-    update(id: string, updateBrandYearDto: UpdateBrandYearDto): string;
+    update(id: string, updateBrandYearDto: UpdateBrandYearDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

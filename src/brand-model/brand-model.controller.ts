@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { BrandModelService } from './brand-model.service';
 import { CreateBrandModelDto } from './dto/create-brand-model.dto';
 import { UpdateBrandModelDto } from './dto/update-brand-model.dto';
@@ -12,9 +21,17 @@ export class BrandModelController {
     return this.brandModelService.create(createBrandModelDto);
   }
 
-  @Get("pagination")
-  findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
+  @Get('pagination')
+  findAllByPageination(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
     return this.brandModelService.findAllByPageination(page, limit);
+  }
+
+  @Get('sort/:id')
+  sortById(@Param('id') id: number) {
+    return this.brandModelService.sortByModel(id);
   }
 
   @Get()
@@ -28,7 +45,10 @@ export class BrandModelController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrandModelDto: UpdateBrandModelDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateBrandModelDto: UpdateBrandModelDto,
+  ) {
     return this.brandModelService.update(+id, updateBrandModelDto);
   }
 

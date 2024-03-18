@@ -1,4 +1,7 @@
-import { PartialType } from '@nestjs/mapped-types';
-import { CreateBrandYearDto } from './create-brand-year.dto';
+import { IsOptional, IsString } from "class-validator";
 
-export class UpdateBrandYearDto extends PartialType(CreateBrandYearDto) {}
+export class UpdateBrandYearDto {
+  @IsString()
+  @IsOptional()
+  title: string;
+}

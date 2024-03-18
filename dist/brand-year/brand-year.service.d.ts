@@ -8,12 +8,13 @@ export declare class BrandYearService {
     private readonly modelRepositiry;
     constructor(yearRepository: Repository<BrandYear>, modelRepositiry: Repository<BrandModel>);
     create(createBrandYearDto: CreateBrandYearDto): Promise<string>;
+    sortById(id: number): Promise<import("../brand-engine/entities/brand-engine.entity").BrandEngine[]>;
     findAllByPageination(page: number, limit: number): Promise<{
         count: number;
         data: BrandYear[];
     }>;
     findAll(): Promise<BrandYear[]>;
     findOne(id: number): Promise<BrandYear>;
-    update(id: number, updateBrandYearDto: UpdateBrandYearDto): string;
+    update(id: number, updateBrandYearDto: UpdateBrandYearDto): Promise<import("typeorm").UpdateResult>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

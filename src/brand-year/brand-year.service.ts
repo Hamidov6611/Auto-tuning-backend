@@ -27,6 +27,14 @@ export class BrandYearService {
     return 'added successfully';
   }
 
+  async sortById(id: number) {
+    const engine = await this.yearRepository?.find({
+      where: { id },
+      relations: { engine: true },
+    });
+    return engine[0]?.engine;
+  }
+
   // wrong name Pagination 😂
   async findAllByPageination(page: number, limit: number) {
     const skip = (page - 1) * limit;
@@ -34,6 +42,7 @@ export class BrandYearService {
     const years = await this.yearRepository.find({
       take: limit,
       skip: skip,
+      relations: { model: true },
       order: { createdat: 'ASC' },
     });
     return {
@@ -43,15 +52,15 @@ export class BrandYearService {
   }
 
   async findAll() {
-    return await this.yearRepository.find({});
+    return await this.yearRepository.find({ relations: { model: true } });
   }
 
   async findOne(id: number) {
     return this.yearRepository.findOne({ where: { id } });
   }
 
-  update(id: number, updateBrandYearDto: UpdateBrandYearDto) {
-    return `This action updates a #${id} brandYear`;
+  async update(id: number, updateBrandYearDto: UpdateBrandYearDto) {
+    return await this.yearRepository.update({ id }, updateBrandYearDto);
   }
 
   async remove(id: number) {

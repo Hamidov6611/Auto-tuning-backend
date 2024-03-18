@@ -18,11 +18,6 @@ __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", Number)
-], UpdateEcoDto.prototype, "engine_id", void 0);
-__decorate([
-    (0, class_validator_1.IsNumber)(),
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Number)
 ], UpdateEcoDto.prototype, "original_nm", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),

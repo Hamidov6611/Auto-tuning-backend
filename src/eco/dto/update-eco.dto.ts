@@ -1,9 +1,9 @@
 import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateEcoDto {
-  @IsNumber()
-  @IsOptional()
-  engine_id: number;
+  // @IsNumber()
+  // @IsOptional()
+  // engine_id: number;
 
   @IsNumber()
   @IsOptional()

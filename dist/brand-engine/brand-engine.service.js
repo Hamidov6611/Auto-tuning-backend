@@ -40,6 +40,7 @@ let BrandEngineService = class BrandEngineService {
             take: limit,
             skip: skip,
             order: { createdat: 'ASC' },
+            relations: { year: true }
         });
         return {
             count: count.length,

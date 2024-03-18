@@ -10,10 +10,12 @@ export declare class BrandService {
     private fileService;
     constructor(brandRepository: Repository<Brand>, catalogRepositiry: Repository<Catalog>, fileService: FileService);
     create(createBrandDto: CreateBrandDto, picture: string): Promise<string>;
+    sortById(id: number): Promise<Brand[]>;
     findAll(page: number, limit: number): Promise<{
         count: number;
         data: Brand[];
     }>;
+    sortByCategory(id: number): Promise<Brand[]>;
     getAll(id: number): Promise<Brand[]>;
     findOne(id: number): Promise<Brand>;
     update(id: number, updateBrandDto: UpdateBrandDto, picture: any): Promise<import("typeorm").UpdateResult>;

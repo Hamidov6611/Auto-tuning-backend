@@ -34,6 +34,13 @@ let BrandModelService = class BrandModelService {
         });
         return 'added successfully';
     }
+    async sortByModel(id) {
+        const models = await this.modelRepositiry.find({
+            where: { id },
+            relations: { year: true },
+        });
+        return models[0]?.year;
+    }
     async findAll() {
         return await this.modelRepositiry.find({ relations: { brand: true } });
     }
@@ -43,6 +50,7 @@ let BrandModelService = class BrandModelService {
         const models = await this.modelRepositiry.find({
             take: limit,
             skip: skip,
+            relations: { brand: true },
             order: { createdat: 'ASC' },
         });
         return {
@@ -53,8 +61,8 @@ let BrandModelService = class BrandModelService {
     async findOne(id) {
         return await this.modelRepositiry.findOne({ where: { id } });
     }
-    update(id, updateBrandModelDto) {
-        return `This action updates a #${id} brandModel`;
+    async update(id, updateBrandModelDto) {
+        return await this.modelRepositiry.update({ id }, updateBrandModelDto);
     }
     async remove(id) {
         return await this.modelRepositiry.delete(id);

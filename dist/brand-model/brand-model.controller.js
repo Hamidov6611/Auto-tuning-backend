@@ -27,6 +27,9 @@ let BrandModelController = class BrandModelController {
     findAllByPageination(page, limit) {
         return this.brandModelService.findAllByPageination(page, limit);
     }
+    sortById(id) {
+        return this.brandModelService.sortByModel(id);
+    }
     findAll() {
         return this.brandModelService.findAll();
     }
@@ -49,13 +52,20 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BrandModelController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)("pagination"),
-    __param(0, (0, common_1.Query)("page")),
-    __param(1, (0, common_1.Query)("limit")),
+    (0, common_1.Get)('pagination'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
 ], BrandModelController.prototype, "findAllByPageination", null);
+__decorate([
+    (0, common_1.Get)('sort/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], BrandModelController.prototype, "sortById", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

@@ -26,17 +26,26 @@ export class BrandModelService {
     return 'added successfully';
   }
 
+  async sortByModel(id: number) {
+    const models = await this.modelRepositiry.find({
+      where: { id },
+      relations: { year: true },
+    });
+    return models[0]?.year;
+  }
+
   async findAll() {
     return await this.modelRepositiry.find({ relations: { brand: true } });
   }
 
-   // wrong name Pagination 😂
-   async findAllByPageination(page: number, limit: number) {
+  // wrong name Pagination 😂
+  async findAllByPageination(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.modelRepositiry.find({});
     const models = await this.modelRepositiry.find({
       take: limit,
       skip: skip,
+      relations: { brand: true },
       order: { createdat: 'ASC' },
     });
     return {
@@ -49,8 +58,8 @@ export class BrandModelService {
     return await this.modelRepositiry.findOne({ where: { id } });
   }
 
-  update(id: number, updateBrandModelDto: UpdateBrandModelDto) {
-    return `This action updates a #${id} brandModel`;
+  async update(id: number, updateBrandModelDto: UpdateBrandModelDto) {
+    return await this.modelRepositiry.update({ id }, updateBrandModelDto);
   }
 
   async remove(id: number) {

@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { BrandYearService } from './brand-year.service';
 import { CreateBrandYearDto } from './dto/create-brand-year.dto';
 import { UpdateBrandYearDto } from './dto/update-brand-year.dto';
@@ -12,9 +21,17 @@ export class BrandYearController {
     return this.brandYearService.create(createBrandYearDto);
   }
 
-  @Get("pagination")
-  findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
+  @Get('pagination')
+  findAllByPageination(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
     return this.brandYearService.findAllByPageination(page, limit);
+  }
+
+  @Get('sort/:id')
+  sortById(@Param('id') id: number) {
+    return this.brandYearService.sortById(id);
   }
 
   @Get()
@@ -28,7 +45,10 @@ export class BrandYearController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateBrandYearDto: UpdateBrandYearDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateBrandYearDto: UpdateBrandYearDto,
+  ) {
     return this.brandYearService.update(+id, updateBrandYearDto);
   }
 

@@ -34,12 +34,20 @@ let BrandYearService = class BrandYearService {
         });
         return 'added successfully';
     }
+    async sortById(id) {
+        const engine = await this.yearRepository?.find({
+            where: { id },
+            relations: { engine: true },
+        });
+        return engine[0]?.engine;
+    }
     async findAllByPageination(page, limit) {
         const skip = (page - 1) * limit;
         const count = await this.yearRepository.find({});
         const years = await this.yearRepository.find({
             take: limit,
             skip: skip,
+            relations: { model: true },
             order: { createdat: 'ASC' },
         });
         return {
@@ -48,13 +56,13 @@ let BrandYearService = class BrandYearService {
         };
     }
     async findAll() {
-        return await this.yearRepository.find({});
+        return await this.yearRepository.find({ relations: { model: true } });
     }
     async findOne(id) {
         return this.yearRepository.findOne({ where: { id } });
     }
-    update(id, updateBrandYearDto) {
-        return `This action updates a #${id} brandYear`;
+    async update(id, updateBrandYearDto) {
+        return await this.yearRepository.update({ id }, updateBrandYearDto);
     }
     async remove(id) {
         return await this.yearRepository.delete(id);

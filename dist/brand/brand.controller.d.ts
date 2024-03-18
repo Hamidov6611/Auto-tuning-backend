@@ -6,6 +6,8 @@ export declare class BrandController {
     constructor(brandService: BrandService);
     create(files: any, createBrandDto: CreateBrandDto): Promise<string>;
     update(files: any, id: number, updateBrandDto: UpdateBrandDto): Promise<import("typeorm").UpdateResult>;
+    sortByCatalog(id: number): Promise<import("./entities/brand.entity").Brand[]>;
+    sortByCatalog2(id: number): Promise<import("./entities/brand.entity").Brand[]>;
     findAll(page: number, limit: number): Promise<{
         count: number;
         data: import("./entities/brand.entity").Brand[];

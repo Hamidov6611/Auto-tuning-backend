@@ -30,6 +30,12 @@ let BrandController = class BrandController {
         const { img } = files;
         return this.brandService.update(id, updateBrandDto, img && img[0]);
     }
+    sortByCatalog(id) {
+        return this.brandService.sortByCategory(id);
+    }
+    sortByCatalog2(id) {
+        return this.brandService.sortById(id);
+    }
     findAll(page, limit) {
         return this.brandService.findAll(page, limit);
     }
@@ -64,16 +70,30 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], BrandController.prototype, "update", null);
 __decorate([
+    (0, common_1.Get)('sort/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], BrandController.prototype, "sortByCatalog", null);
+__decorate([
+    (0, common_1.Get)('sort2/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], BrandController.prototype, "sortByCatalog2", null);
+__decorate([
     (0, common_1.Get)(),
-    __param(0, (0, common_1.Query)("page")),
-    __param(1, (0, common_1.Query)("limit")),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
 ], BrandController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)('getAll'),
-    __param(0, (0, common_1.Query)("catalog_id")),
+    __param(0, (0, common_1.Query)('catalog_id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number]),
     __metadata("design:returntype", void 0)
