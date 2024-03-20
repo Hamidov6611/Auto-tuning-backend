@@ -38,12 +38,20 @@ export class EcoService {
       take: limit,
       skip: skip,
       order: { createdat: 'ASC' },
-      relations: {engine: true}
+      relations: { engine: true },
     });
     return {
       count: count.length,
       data: ecos,
     };
+  }
+
+  async findByEngineId(id: number): Promise<Eco[]> {
+    const engine = await this.engineRepository.findOne({where: {id}, relations: ['eco']});
+    if (!engine) {
+      throw new Error('Engine not found');
+    }
+    return engine.eco;
   }
 
   async findAll() {

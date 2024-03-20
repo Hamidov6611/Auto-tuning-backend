@@ -39,6 +39,13 @@ let Stage2Service = class Stage2Service {
         });
         return 'added successfully';
     }
+    async findByEngineId(id) {
+        const engine = await this.engineRepository.findOne({ where: { id }, relations: ['stage_two'] });
+        if (!engine) {
+            throw new Error('Engine not found');
+        }
+        return engine.stage_two;
+    }
     async findAllByPageination(page, limit) {
         const skip = (page - 1) * limit;
         const count = await this.stage2Repositiry.find({});
@@ -46,6 +53,7 @@ let Stage2Service = class Stage2Service {
             take: limit,
             skip: skip,
             order: { createdat: 'ASC' },
+            relations: { engine: true },
         });
         return {
             count: count.length,

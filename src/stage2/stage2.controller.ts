@@ -12,6 +12,11 @@ export class Stage2Controller {
     return this.stage2Service.create(createStage2Dto);
   }
 
+  @Get('engine/:id')
+  findByEngine(@Param('id') id: number) {
+    return this.stage2Service.findByEngineId(id);
+  }
+
   @Get("pagination")
   findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
     return this.stage2Service.findAllByPageination(page, limit);

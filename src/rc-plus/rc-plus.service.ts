@@ -28,6 +28,17 @@ export class RcPlusService {
     return 'added successfully';
   }
 
+  async findByEngineId(id: number): Promise<RcPlus[]> {
+    const engine = await this.engineRepository.findOne({
+      where: { id },
+      relations: ['rc_plus'],
+    });
+    if (!engine) {
+      throw new Error('Engine not found');
+    }
+    return engine.rc_plus;
+  }
+
   async findAllByPageination(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.rcRepositiry.find({});
@@ -35,6 +46,7 @@ export class RcPlusService {
       take: limit,
       skip: skip,
       order: { createdat: 'ASC' },
+      relations: { engine: true },
     });
     return {
       count: count.length,

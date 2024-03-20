@@ -5,6 +5,7 @@ export declare class Stage2Controller {
     private readonly stage2Service;
     constructor(stage2Service: Stage2Service);
     create(createStage2Dto: CreateStage2Dto): Promise<string>;
+    findByEngine(id: number): Promise<import("./entities/stage2.entity").Stage2[]>;
     findAllByPageination(page: number, limit: number): Promise<{
         count: number;
         data: import("./entities/stage2.entity").Stage2[];

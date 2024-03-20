@@ -8,6 +8,7 @@ export declare class RcPlusService {
     private readonly rcRepositiry;
     constructor(engineRepository: Repository<BrandEngine>, rcRepositiry: Repository<RcPlus>);
     create(createRcPlusDto: CreateRcPlusDto): Promise<string>;
+    findByEngineId(id: number): Promise<RcPlus[]>;
     findAllByPageination(page: number, limit: number): Promise<{
         count: number;
         data: RcPlus[];

@@ -28,6 +28,17 @@ export class TransmissionService {
     return 'added successfully';
   }
 
+  async findByEngineId(id: number): Promise<Transmission[]> {
+    const engine = await this.engineRepository.findOne({
+      where: { id },
+      relations: ['transmission'],
+    });
+    if (!engine) {
+      throw new Error('Engine not found');
+    }
+    return engine.transmission;
+  }
+
   async findAllByPageination(page: number, limit: number) {
     const skip = (page - 1) * limit;
     const count = await this.transmissionRepositiry.find({});
@@ -35,6 +46,7 @@ export class TransmissionService {
       take: limit,
       skip: skip,
       order: { createdat: 'ASC' },
+      relations: { engine: true },
     });
     return {
       count: count.length,

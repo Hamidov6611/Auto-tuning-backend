@@ -37,11 +37,11 @@ export class BrandEngine {
 
   @OneToMany(() => Transmission, (transmission) => transmission.engine)
   @JoinColumn({name: "transmission_id"})
-  transmission: Transmission
+  transmission: Transmission[]
 
   @OneToMany(() => RcPlus, (rc) => rc.engine)
   @JoinColumn({name: "engine_id"})
-  rc_plus: RcPlus
+  rc_plus: RcPlus[]
 
   @ManyToOne(() => BrandYear, (year) => year.engine)
   @JoinColumn({ name: 'year_id' })

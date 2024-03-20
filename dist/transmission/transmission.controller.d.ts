@@ -9,6 +9,7 @@ export declare class TransmissionController {
         count: number;
         data: import("./entities/transmission.entity").Transmission[];
     }>;
+    findByEngine(id: number): Promise<import("./entities/transmission.entity").Transmission[]>;
     findAll(): Promise<import("./entities/transmission.entity").Transmission[]>;
     findOne(id: string): Promise<import("./entities/transmission.entity").Transmission>;
     update(id: string, updateTransmissionDto: UpdateTransmissionDto): Promise<import("typeorm").UpdateResult>;

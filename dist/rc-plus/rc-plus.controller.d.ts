@@ -9,6 +9,7 @@ export declare class RcPlusController {
         count: number;
         data: import("./entities/rc-plus.entity").RcPlus[];
     }>;
+    findByEngine(id: number): Promise<import("./entities/rc-plus.entity").RcPlus[]>;
     findAll(): Promise<import("./entities/rc-plus.entity").RcPlus[]>;
     findOne(id: string): Promise<import("./entities/rc-plus.entity").RcPlus>;
     update(id: string, updateRcPlusDto: UpdateRcPlusDto): Promise<import("typeorm").UpdateResult>;

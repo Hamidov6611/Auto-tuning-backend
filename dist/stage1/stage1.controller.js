@@ -27,6 +27,9 @@ let Stage1Controller = class Stage1Controller {
     findAllByPageination(page, limit) {
         return this.stage1Service.findAllByPageination(page, limit);
     }
+    findByEngine(id) {
+        return this.stage1Service.findByEngineId(id);
+    }
     findAll() {
         return this.stage1Service.findAll();
     }
@@ -49,13 +52,20 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], Stage1Controller.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)("pagination"),
-    __param(0, (0, common_1.Query)("page")),
-    __param(1, (0, common_1.Query)("limit")),
+    (0, common_1.Get)('pagination'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
 ], Stage1Controller.prototype, "findAllByPageination", null);
+__decorate([
+    (0, common_1.Get)('engine/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], Stage1Controller.prototype, "findByEngine", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

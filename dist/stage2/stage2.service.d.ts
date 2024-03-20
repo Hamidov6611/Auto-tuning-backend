@@ -8,6 +8,7 @@ export declare class Stage2Service {
     private readonly stage2Repositiry;
     constructor(engineRepository: Repository<BrandEngine>, stage2Repositiry: Repository<Stage2>);
     create(createStage2Dto: CreateStage2Dto): Promise<string>;
+    findByEngineId(id: number): Promise<Stage2[]>;
     findAllByPageination(page: number, limit: number): Promise<{
         count: number;
         data: Stage2[];

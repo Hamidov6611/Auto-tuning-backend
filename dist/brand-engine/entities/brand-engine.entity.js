@@ -46,12 +46,12 @@ __decorate([
 __decorate([
     (0, typeorm_1.OneToMany)(() => transmission_entity_1.Transmission, (transmission) => transmission.engine),
     (0, typeorm_1.JoinColumn)({ name: "transmission_id" }),
-    __metadata("design:type", transmission_entity_1.Transmission)
+    __metadata("design:type", Array)
 ], BrandEngine.prototype, "transmission", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => rc_plus_entity_1.RcPlus, (rc) => rc.engine),
     (0, typeorm_1.JoinColumn)({ name: "engine_id" }),
-    __metadata("design:type", rc_plus_entity_1.RcPlus)
+    __metadata("design:type", Array)
 ], BrandEngine.prototype, "rc_plus", void 0);
 __decorate([
     (0, typeorm_1.ManyToOne)(() => brand_year_entity_1.BrandYear, (year) => year.engine),

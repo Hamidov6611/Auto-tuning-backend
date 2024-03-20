@@ -12,6 +12,7 @@ export declare class EcoService {
         count: number;
         data: Eco[];
     }>;
+    findByEngineId(id: number): Promise<Eco[]>;
     findAll(): Promise<Eco[]>;
     findOne(id: number): Promise<Eco>;
     update(id: number, updateEcoDto: UpdateEcoDto): Promise<import("typeorm").UpdateResult>;

@@ -9,6 +9,7 @@ export declare class Stage1Controller {
         count: number;
         data: import("./entities/stage1.entity").Stage1[];
     }>;
+    findByEngine(id: number): Promise<import("./entities/stage1.entity").Stage1[]>;
     findAll(): Promise<import("./entities/stage1.entity").Stage1[]>;
     findOne(id: string): Promise<import("./entities/stage1.entity").Stage1[]>;
     update(id: string, updateStage1Dto: UpdateStage1Dto): Promise<import("typeorm").UpdateResult>;

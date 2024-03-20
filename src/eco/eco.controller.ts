@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { EcoService } from './eco.service';
 import { CreateEcoDto } from './dto/create-eco.dto';
 import { UpdateEcoDto } from './dto/update-eco.dto';
@@ -12,8 +21,11 @@ export class EcoController {
     return this.ecoService.create(createEcoDto);
   }
 
-  @Get("pagination")
-  findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
+  @Get('pagination')
+  findAllByPageination(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
     return this.ecoService.findAllByPageination(page, limit);
   }
 
@@ -35,5 +47,10 @@ export class EcoController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.ecoService.remove(+id);
+  }
+
+  @Get('engine/:id')
+  findByEngine(@Param('id') id: number) {
+    return this.ecoService.findByEngineId(id);
   }
 }

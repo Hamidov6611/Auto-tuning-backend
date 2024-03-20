@@ -13,4 +13,5 @@ export declare class EcoController {
     findOne(id: string): Promise<import("./entities/eco.entity").Eco>;
     update(id: string, updateEcoDto: UpdateEcoDto): Promise<import("typeorm").UpdateResult>;
     remove(id: string): Promise<import("typeorm").DeleteResult>;
+    findByEngine(id: number): Promise<import("./entities/eco.entity").Eco[]>;
 }

@@ -24,6 +24,9 @@ let Stage2Controller = class Stage2Controller {
     create(createStage2Dto) {
         return this.stage2Service.create(createStage2Dto);
     }
+    findByEngine(id) {
+        return this.stage2Service.findByEngineId(id);
+    }
     findAllByPageination(page, limit) {
         return this.stage2Service.findAllByPageination(page, limit);
     }
@@ -48,6 +51,13 @@ __decorate([
     __metadata("design:paramtypes", [create_stage2_dto_1.CreateStage2Dto]),
     __metadata("design:returntype", void 0)
 ], Stage2Controller.prototype, "create", null);
+__decorate([
+    (0, common_1.Get)('engine/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], Stage2Controller.prototype, "findByEngine", null);
 __decorate([
     (0, common_1.Get)("pagination"),
     __param(0, (0, common_1.Query)("page")),

@@ -39,6 +39,9 @@ let EcoController = class EcoController {
     remove(id) {
         return this.ecoService.remove(+id);
     }
+    findByEngine(id) {
+        return this.ecoService.findByEngineId(id);
+    }
 };
 exports.EcoController = EcoController;
 __decorate([
@@ -49,9 +52,9 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], EcoController.prototype, "create", null);
 __decorate([
-    (0, common_1.Get)("pagination"),
-    __param(0, (0, common_1.Query)("page")),
-    __param(1, (0, common_1.Query)("limit")),
+    (0, common_1.Get)('pagination'),
+    __param(0, (0, common_1.Query)('page')),
+    __param(1, (0, common_1.Query)('limit')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
@@ -84,6 +87,13 @@ __decorate([
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", void 0)
 ], EcoController.prototype, "remove", null);
+__decorate([
+    (0, common_1.Get)('engine/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], EcoController.prototype, "findByEngine", null);
 exports.EcoController = EcoController = __decorate([
     (0, common_1.Controller)('eco'),
     __metadata("design:paramtypes", [eco_service_1.EcoService])

@@ -1,4 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Query } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+  Query,
+} from '@nestjs/common';
 import { Stage1Service } from './stage1.service';
 import { CreateStage1Dto } from './dto/create-stage1.dto';
 import { UpdateStage1Dto } from './dto/update-stage1.dto';
@@ -12,9 +21,17 @@ export class Stage1Controller {
     return this.stage1Service.create(createStage1Dto);
   }
 
-  @Get("pagination")
-  findAllByPageination(@Query("page") page: number, @Query("limit") limit: number) {
+  @Get('pagination')
+  findAllByPageination(
+    @Query('page') page: number,
+    @Query('limit') limit: number,
+  ) {
     return this.stage1Service.findAllByPageination(page, limit);
+  }
+
+  @Get('engine/:id')
+  findByEngine(@Param('id') id: number) {
+    return this.stage1Service.findByEngineId(id);
   }
 
   @Get()

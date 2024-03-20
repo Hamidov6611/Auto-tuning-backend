@@ -8,6 +8,7 @@ export declare class TransmissionService {
     private readonly transmissionRepositiry;
     constructor(engineRepository: Repository<BrandEngine>, transmissionRepositiry: Repository<Transmission>);
     create(createTransmissionDto: CreateTransmissionDto): Promise<string>;
+    findByEngineId(id: number): Promise<Transmission[]>;
     findAllByPageination(page: number, limit: number): Promise<{
         count: number;
         data: Transmission[];

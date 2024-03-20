@@ -10,8 +10,8 @@ export declare class BrandEngine {
     eco: Eco[];
     stage_one: Stage1[];
     stage_two: Stage2[];
-    transmission: Transmission;
-    rc_plus: RcPlus;
+    transmission: Transmission[];
+    rc_plus: RcPlus[];
     year: BrandYear;
     createdat: Date;
     updatedat: Date;

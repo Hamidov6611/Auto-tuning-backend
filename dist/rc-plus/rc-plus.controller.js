@@ -27,6 +27,9 @@ let RcPlusController = class RcPlusController {
     findAllByPageination(page, limit) {
         return this.rcPlusService.findAllByPageination(page, limit);
     }
+    findByEngine(id) {
+        return this.rcPlusService.findByEngineId(id);
+    }
     findAll() {
         return this.rcPlusService.findAll();
     }
@@ -56,6 +59,13 @@ __decorate([
     __metadata("design:paramtypes", [Number, Number]),
     __metadata("design:returntype", void 0)
 ], RcPlusController.prototype, "findAllByPageination", null);
+__decorate([
+    (0, common_1.Get)('engine/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", void 0)
+], RcPlusController.prototype, "findByEngine", null);
 __decorate([
     (0, common_1.Get)(),
     __metadata("design:type", Function),

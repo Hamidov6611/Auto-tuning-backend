@@ -29,6 +29,11 @@ export class RcPlusController {
     return this.rcPlusService.findAllByPageination(page, limit);
   }
 
+  @Get('engine/:id')
+  findByEngine(@Param('id') id: number) {
+    return this.rcPlusService.findByEngineId(id);
+  }
+
   @Get()
   findAll() {
     return this.rcPlusService.findAll();

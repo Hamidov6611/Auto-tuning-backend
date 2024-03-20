@@ -17,6 +17,11 @@ export class TransmissionController {
     return this.transmissionService.findAllByPageination(page, limit);
   }
 
+  @Get('engine/:id')
+  findByEngine(@Param('id') id: number) {
+    return this.transmissionService.findByEngineId(id);
+  }
+
   @Get()
   findAll() {
     return this.transmissionService.findAll();
