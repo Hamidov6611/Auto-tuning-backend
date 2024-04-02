@@ -7,12 +7,12 @@ import { AppModule } from './app.module';
 // } from '@nestjs/platform-fastify';
 
 // import fastifyCsrf from "@fastify/csrf-protection"
-import { Connection } from 'typeorm';
+// import { Connection } from 'typeorm';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
- const connection = app.get(Connection);
- await connection.synchronize();
+//  const connection = app.get(Connection);
+//  await connection.synchronize();
   app.setGlobalPrefix('api');
   // app.register(helmet)
   app.enableCors();
