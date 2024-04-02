@@ -21,7 +21,13 @@ export class BrandEngine {
   id: number;
 
   @Column()
-  title: string;
+  name: string;
+
+  @Column()
+  type_engine: string
+
+  @Column()
+  engine_hp: string
 
   @OneToMany(() => Eco, (eco) => eco.engine)
   @JoinColumn({ name: 'eco_id' })

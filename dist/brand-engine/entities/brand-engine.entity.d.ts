@@ -6,7 +6,9 @@ import { Stage2 } from 'src/stage2/entities/stage2.entity';
 import { Transmission } from 'src/transmission/entities/transmission.entity';
 export declare class BrandEngine {
     id: number;
-    title: string;
+    name: string;
+    type_engine: string;
+    engine_hp: string;
     eco: Eco[];
     stage_one: Stage1[];
     stage_two: Stage2[];

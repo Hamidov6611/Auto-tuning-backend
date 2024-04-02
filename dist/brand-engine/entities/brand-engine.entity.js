@@ -27,7 +27,15 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], BrandEngine.prototype, "title", void 0);
+], BrandEngine.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], BrandEngine.prototype, "type_engine", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], BrandEngine.prototype, "engine_hp", void 0);
 __decorate([
     (0, typeorm_1.OneToMany)(() => eco_entity_1.Eco, (eco) => eco.engine),
     (0, typeorm_1.JoinColumn)({ name: 'eco_id' }),

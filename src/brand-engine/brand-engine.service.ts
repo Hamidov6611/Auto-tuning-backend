@@ -19,7 +19,9 @@ export class BrandEngineService {
       where: { id: createBrandEngineDto.year_id },
     });
     await this.engineRepository.save({
-      title: createBrandEngineDto.title,
+      name: createBrandEngineDto.name,
+      engine_hp: createBrandEngineDto.engine_hp,
+      type_engine: createBrandEngineDto.type_engine,
       year,
     });
     return 'added successfully';
@@ -32,7 +34,7 @@ export class BrandEngineService {
       take: limit,
       skip: skip,
       order: { createdat: 'ASC' },
-      relations: {year: true}
+      relations: { year: true },
     });
     return {
       count: count.length,
@@ -41,7 +43,7 @@ export class BrandEngineService {
   }
 
   async findAll() {
-    return await this.engineRepository.find({relations: {year: true}});
+    return await this.engineRepository.find({ relations: { year: true } });
   }
 
   async findOne(id: number) {
@@ -49,14 +51,17 @@ export class BrandEngineService {
   }
 
   async update(id: number, updateBrandEngineDto: UpdateBrandEngineDto) {
-    const engine = await this.engineRepository.findOne({where: {id}})
-    if(updateBrandEngineDto.title) {
-      await this.engineRepository.update({id}, {...engine, title: updateBrandEngineDto.title})
+    const engine = await this.engineRepository.findOne({ where: { id } });
+    if (updateBrandEngineDto.name) {
+      await this.engineRepository.update(
+        { id },
+        { ...engine, name: updateBrandEngineDto.name },
+      );
     }
     return `Updated`;
   }
 
   async remove(id: number) {
-    return await this.engineRepository.delete(id)
+    return await this.engineRepository.delete(id);
   }
 }

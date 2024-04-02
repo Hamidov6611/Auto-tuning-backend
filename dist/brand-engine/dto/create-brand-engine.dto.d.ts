@@ -1,4 +1,6 @@
 export declare class CreateBrandEngineDto {
-    title: string;
+    name: string;
+    type_engine: string;
+    engine_hp: string;
     year_id: number;
 }

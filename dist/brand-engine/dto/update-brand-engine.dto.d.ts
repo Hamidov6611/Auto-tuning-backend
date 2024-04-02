@@ -1,4 +1,4 @@
 export declare class UpdateBrandEngineDto {
-    title: string;
+    name: string;
     year_id: number;
 }

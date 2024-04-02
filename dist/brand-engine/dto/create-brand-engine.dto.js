@@ -17,7 +17,15 @@ exports.CreateBrandEngineDto = CreateBrandEngineDto;
 __decorate([
     (0, class_validator_1.IsString)(),
     __metadata("design:type", String)
-], CreateBrandEngineDto.prototype, "title", void 0);
+], CreateBrandEngineDto.prototype, "name", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateBrandEngineDto.prototype, "type_engine", void 0);
+__decorate([
+    (0, class_validator_1.IsString)(),
+    __metadata("design:type", String)
+], CreateBrandEngineDto.prototype, "engine_hp", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     __metadata("design:type", Number)

@@ -3,7 +3,7 @@ import { IsNumber, IsOptional, IsString } from 'class-validator';
 export class UpdateBrandEngineDto {
   @IsString()
   @IsOptional()
-  title: string;
+  name: string;
 
   @IsNumber()
   @IsOptional()

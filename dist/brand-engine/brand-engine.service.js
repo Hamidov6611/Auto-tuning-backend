@@ -28,7 +28,9 @@ let BrandEngineService = class BrandEngineService {
             where: { id: createBrandEngineDto.year_id },
         });
         await this.engineRepository.save({
-            title: createBrandEngineDto.title,
+            name: createBrandEngineDto.name,
+            engine_hp: createBrandEngineDto.engine_hp,
+            type_engine: createBrandEngineDto.type_engine,
             year,
         });
         return 'added successfully';
@@ -40,7 +42,7 @@ let BrandEngineService = class BrandEngineService {
             take: limit,
             skip: skip,
             order: { createdat: 'ASC' },
-            relations: { year: true }
+            relations: { year: true },
         });
         return {
             count: count.length,
@@ -55,8 +57,8 @@ let BrandEngineService = class BrandEngineService {
     }
     async update(id, updateBrandEngineDto) {
         const engine = await this.engineRepository.findOne({ where: { id } });
-        if (updateBrandEngineDto.title) {
-            await this.engineRepository.update({ id }, { ...engine, title: updateBrandEngineDto.title });
+        if (updateBrandEngineDto.name) {
+            await this.engineRepository.update({ id }, { ...engine, name: updateBrandEngineDto.name });
         }
         return `Updated`;
     }

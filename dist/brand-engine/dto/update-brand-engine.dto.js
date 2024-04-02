@@ -18,7 +18,7 @@ __decorate([
     (0, class_validator_1.IsString)(),
     (0, class_validator_1.IsOptional)(),
     __metadata("design:type", String)
-], UpdateBrandEngineDto.prototype, "title", void 0);
+], UpdateBrandEngineDto.prototype, "name", void 0);
 __decorate([
     (0, class_validator_1.IsNumber)(),
     (0, class_validator_1.IsOptional)(),
