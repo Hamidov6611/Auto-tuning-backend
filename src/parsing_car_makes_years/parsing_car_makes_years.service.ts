@@ -26,7 +26,10 @@ export class ParsingCarMakesYearsService {
   }
 
   async findOne(id: number) {
-    return await this.parsingCarMakeYearRepository.find({})
+    return await this.parsingCarMakeYearRepository.findOne({
+      where: {id},
+      relations: {parsing_engine_id: true}
+    })
   }
 
   update(
