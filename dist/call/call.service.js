@@ -46,7 +46,7 @@ let CallService = class CallService {
 exports.CallService = CallService;
 exports.CallService = CallService = __decorate([
     (0, common_1.Injectable)(),
-    __param(0, (0, typeorm_1.InjectRepository)(call_entity_1.Call)),
+    __param(0, (0, typeorm_1.InjectRepository)(call_entity_1.Calls)),
     __metadata("design:paramtypes", [typeorm_2.Repository])
 ], CallService);
 //# sourceMappingURL=call.service.js.map

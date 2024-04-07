@@ -39,6 +39,6 @@ __decorate([
     __metadata("design:type", Date)
 ], Feedback.prototype, "updatedAt", void 0);
 exports.Feedback = Feedback = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('feedback')
 ], Feedback);
 //# sourceMappingURL=feedback.entity.js.map

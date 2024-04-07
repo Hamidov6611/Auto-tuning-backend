@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCallDto } from './dto/create-call.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Call } from './entities/call.entity';
+import { Calls } from './entities/call.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class CallService {
   constructor(
-    @InjectRepository(Call) private readonly callRepository: Repository<Call>,
+    @InjectRepository(Calls) private readonly callRepository: Repository<Calls>,
   ) {}
 
   async create(createCallDto: CreateCallDto) {

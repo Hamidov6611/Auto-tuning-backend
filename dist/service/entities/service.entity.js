@@ -45,6 +45,6 @@ __decorate([
     __metadata("design:type", Date)
 ], Service.prototype, "updatedAt", void 0);
 exports.Service = Service = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('service')
 ], Service);
 //# sourceMappingURL=service.entity.js.map

@@ -9,36 +9,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Call = void 0;
+exports.Calls = void 0;
 const typeorm_1 = require("typeorm");
-let Call = class Call {
+let Calls = class Calls {
 };
-exports.Call = Call;
+exports.Calls = Calls;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'call_id' }),
     __metadata("design:type", Number)
-], Call.prototype, "id", void 0);
+], Calls.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Call.prototype, "name", void 0);
+], Calls.prototype, "name", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Call.prototype, "phone", void 0);
+], Calls.prototype, "phone", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
-], Call.prototype, "date", void 0);
+], Calls.prototype, "date", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Call.prototype, "createdAt", void 0);
+], Calls.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Call.prototype, "updatedAt", void 0);
-exports.Call = Call = __decorate([
-    (0, typeorm_1.Entity)()
-], Call);
+], Calls.prototype, "updatedAt", void 0);
+exports.Calls = Calls = __decorate([
+    (0, typeorm_1.Entity)('calls')
+], Calls);
 //# sourceMappingURL=call.entity.js.map

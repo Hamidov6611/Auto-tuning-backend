@@ -1,13 +1,13 @@
 import { CreateCallDto } from './dto/create-call.dto';
-import { Call } from './entities/call.entity';
+import { Calls } from './entities/call.entity';
 import { Repository } from 'typeorm';
 export declare class CallService {
     private readonly callRepository;
-    constructor(callRepository: Repository<Call>);
-    create(createCallDto: CreateCallDto): Promise<CreateCallDto & Call>;
+    constructor(callRepository: Repository<Calls>);
+    create(createCallDto: CreateCallDto): Promise<CreateCallDto & Calls>;
     findAll(page: number, limit: number): Promise<{
         count: number;
-        data: Call[];
+        data: Calls[];
     }>;
     remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

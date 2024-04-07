@@ -23,29 +23,44 @@ const call_module_1 = require("./call/call.module");
 const auto_model_module_1 = require("./auto-model/auto-model.module");
 const auto_catalog_module_1 = require("./auto-catalog/auto-catalog.module");
 const stock_module_1 = require("./stock/stock.module");
-const brand_module_1 = require("./brand/brand.module");
 const catalog_module_1 = require("./catalog/catalog.module");
 const path = require("path");
 const throttler_1 = require("@nestjs/throttler");
 const core_1 = require("@nestjs/core");
-const brand_model_module_1 = require("./brand-model/brand-model.module");
-const brand_year_module_1 = require("./brand-year/brand-year.module");
-const brand_engine_module_1 = require("./brand-engine/brand-engine.module");
-const eco_module_1 = require("./eco/eco.module");
-const stage1_module_1 = require("./stage1/stage1.module");
-const stage2_module_1 = require("./stage2/stage2.module");
-const transmission_module_1 = require("./transmission/transmission.module");
-const rc_plus_module_1 = require("./rc-plus/rc-plus.module");
+const parsing_cars_module_1 = require("./parsing_cars/parsing_cars.module");
+const parsing_car_entity_1 = require("./parsing_cars/entities/parsing_car.entity");
+const admin_entity_1 = require("./admin/entities/admin.entity");
+const auto_catalog_entity_1 = require("./auto-catalog/entities/auto-catalog.entity");
+const auto_model_entity_1 = require("./auto-model/entities/auto-model.entity");
+const call_entity_1 = require("./call/entities/call.entity");
+const category_entity_1 = require("./category/entities/category.entity");
+const feedback_entity_1 = require("./feedback/entities/feedback.entity");
+const news_entity_1 = require("./news/entities/news.entity");
+const service_entity_1 = require("./service/entities/service.entity");
+const stock_entity_1 = require("./stock/entities/stock.entity");
+const work_entity_1 = require("./work/entities/work.entity");
+const parsing_car_makes_module_1 = require("./parsing_car_makes/parsing_car_makes.module");
+const parsing_car_make_entity_1 = require("./parsing_car_makes/entities/parsing_car_make.entity");
+const parsing_car_makes_years_module_1 = require("./parsing_car_makes_years/parsing_car_makes_years.module");
+const parsing_car_makes_year_entity_1 = require("./parsing_car_makes_years/entities/parsing_car_makes_year.entity");
+const parsing_cars_engines_module_1 = require("./parsing_cars_engines/parsing_cars_engines.module");
+const parsing_cars_engine_entity_1 = require("./parsing_cars_engines/entities/parsing_cars_engine.entity");
+const parsing_cars_tunings_module_1 = require("./parsing_cars_tunings/parsing_cars_tunings.module");
+const parsing_cars_tuning_entity_1 = require("./parsing_cars_tunings/entities/parsing_cars_tuning.entity");
+const parsing_cars_marks_tunung_statistics_module_1 = require("./parsing_cars_marks_tunung_statistics/parsing_cars_marks_tunung_statistics.module");
+const parsing_cars_marks_tunung_statistic_entity_1 = require("./parsing_cars_marks_tunung_statistics/entities/parsing_cars_marks_tunung_statistic.entity");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
 exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            throttler_1.ThrottlerModule.forRoot([{
+            throttler_1.ThrottlerModule.forRoot([
+                {
                     ttl: 60,
                     limit: 10,
-                }]),
+                },
+            ]),
             news_module_1.NewsModule,
             work_module_1.WorkModule,
             admin_module_1.AdminModule,
@@ -56,14 +71,32 @@ exports.AppModule = AppModule = __decorate([
             typeorm_1.TypeOrmModule.forRootAsync({
                 imports: [config_1.ConfigModule],
                 useFactory: (configService) => ({
-                    type: 'postgres',
-                    host: configService.get('DB_HOST'),
-                    port: configService.get('DB_PORT'),
-                    username: configService.get('DB_USERNAME'),
-                    password: configService.get('DB_PASSWORD'),
-                    database: configService.get('DB_NAME'),
+                    name: 'mysqlConnection',
+                    type: 'mysql',
+                    host: configService.get('DB_HOST1'),
+                    port: configService.get('DB_PORT1'),
+                    username: configService.get('DB_USERNAME1'),
+                    password: configService.get('DB_PASSWORD1'),
+                    database: configService.get('DB_NAME1'),
                     synchronize: false,
-                    entities: [__dirname + `/**/*.entity{.js, .ts}`],
+                    entities: [
+                        parsing_car_entity_1.ParsingCar,
+                        parsing_car_make_entity_1.ParsingCarMake,
+                        parsing_car_makes_year_entity_1.ParsingCarMakesYear,
+                        parsing_cars_engine_entity_1.ParsingCarsEngine,
+                        parsing_cars_tuning_entity_1.ParsingCarsTuning,
+                        parsing_cars_marks_tunung_statistic_entity_1.ParsingCarsMarksTunungStatistic,
+                        admin_entity_1.Admin,
+                        auto_catalog_entity_1.AutoCatalog,
+                        auto_model_entity_1.AutoModel,
+                        call_entity_1.Calls,
+                        category_entity_1.Category,
+                        feedback_entity_1.Feedback,
+                        news_entity_1.News,
+                        service_entity_1.Service,
+                        stock_entity_1.Stock,
+                        work_entity_1.Work
+                    ],
                 }),
                 inject: [config_1.ConfigService],
             }),
@@ -74,16 +107,13 @@ exports.AppModule = AppModule = __decorate([
             auto_model_module_1.AutoModelModule,
             auto_catalog_module_1.AutoCatalogModule,
             stock_module_1.StockModule,
-            brand_module_1.BrandModule,
             catalog_module_1.CatalogModule,
-            brand_model_module_1.BrandModelModule,
-            brand_year_module_1.BrandYearModule,
-            brand_engine_module_1.BrandEngineModule,
-            eco_module_1.EcoModule,
-            stage1_module_1.Stage1Module,
-            stage2_module_1.Stage2Module,
-            transmission_module_1.TransmissionModule,
-            rc_plus_module_1.RcPlusModule,
+            parsing_cars_module_1.ParsingCarsModule,
+            parsing_car_makes_module_1.ParsingCarMakesModule,
+            parsing_car_makes_years_module_1.ParsingCarMakesYearsModule,
+            parsing_cars_engines_module_1.ParsingCarsEnginesModule,
+            parsing_cars_tunings_module_1.ParsingCarsTuningsModule,
+            parsing_cars_marks_tunung_statistics_module_1.ParsingCarsMarksTunungStatisticsModule,
         ],
         controllers: [app_controller_1.AppController],
         providers: [

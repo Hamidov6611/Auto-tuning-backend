@@ -37,6 +37,6 @@ __decorate([
     __metadata("design:type", Date)
 ], Category.prototype, "updatedAt", void 0);
 exports.Category = Category = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('category')
 ], Category);
 //# sourceMappingURL=category.entity.js.map

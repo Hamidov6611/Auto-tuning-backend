@@ -1,4 +1,4 @@
-export declare class Call {
+export declare class Calls {
     id: number;
     name: string;
     phone: string;

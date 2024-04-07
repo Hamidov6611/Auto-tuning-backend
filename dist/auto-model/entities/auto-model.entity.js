@@ -41,6 +41,6 @@ __decorate([
     __metadata("design:type", Date)
 ], AutoModel.prototype, "updatedat", void 0);
 exports.AutoModel = AutoModel = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('auto_model')
 ], AutoModel);
 //# sourceMappingURL=auto-model.entity.js.map

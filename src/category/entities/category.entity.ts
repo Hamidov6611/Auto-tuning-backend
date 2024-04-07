@@ -1,7 +1,7 @@
 import { Service } from 'src/service/entities/service.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('category')
 export class Category {
   @PrimaryGeneratedColumn({ name: 'category_id' })
   id: number;

@@ -1,7 +1,7 @@
 import { AutoCatalog } from 'src/auto-catalog/entities/auto-catalog.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('auto_model')
 export class AutoModel {
   @PrimaryGeneratedColumn({ name: 'auto_model_id' })
   id: number;

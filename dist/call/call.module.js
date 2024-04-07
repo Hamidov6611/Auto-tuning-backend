@@ -17,7 +17,7 @@ let CallModule = class CallModule {
 exports.CallModule = CallModule;
 exports.CallModule = CallModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([call_entity_1.Call])],
+        imports: [typeorm_1.TypeOrmModule.forFeature([call_entity_1.Calls])],
         controllers: [call_controller_1.CallController],
         providers: [call_service_1.CallService],
     })

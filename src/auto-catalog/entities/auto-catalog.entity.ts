@@ -2,7 +2,7 @@ import { IsOptional } from 'class-validator';
 import { AutoModel } from 'src/auto-model/entities/auto-model.entity';
 import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
-@Entity()
+@Entity('auto_catalog')
 export class AutoCatalog {
   @PrimaryGeneratedColumn({ name: 'auto_catalog_id' })
   id: number;

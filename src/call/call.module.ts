@@ -2,10 +2,10 @@ import { Module } from '@nestjs/common';
 import { CallService } from './call.service';
 import { CallController } from './call.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Call } from './entities/call.entity';
+import { Calls } from './entities/call.entity';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Call])],
+  imports: [TypeOrmModule.forFeature([Calls])],
   controllers: [CallController],
   providers: [CallService],
 })

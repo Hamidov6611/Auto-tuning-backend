@@ -6,7 +6,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-@Entity()
+@Entity('feedback')
 export class Feedback {
   @PrimaryGeneratedColumn({ name: 'fedd_id' })
   id: number;

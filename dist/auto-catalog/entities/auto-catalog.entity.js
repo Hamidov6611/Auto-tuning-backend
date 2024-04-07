@@ -51,6 +51,6 @@ __decorate([
     __metadata("design:type", Date)
 ], AutoCatalog.prototype, "updatedat", void 0);
 exports.AutoCatalog = AutoCatalog = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('auto_catalog')
 ], AutoCatalog);
 //# sourceMappingURL=auto-catalog.entity.js.map
