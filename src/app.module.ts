@@ -7,7 +7,7 @@ import { NewsModule } from './news/news.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { WorkModule } from './work/work.module';
 import { AdminModule } from './admin/admin.module';
-// import { AuthModule } from './auth/auth.module';
+// import { AuthModule } from './auth/auth.module';`
 import { FeedbackModule } from './feedback/feedback.module';
 import { CategoryModule } from './category/category.module';
 import { ServiceModule } from './service/service.module';
