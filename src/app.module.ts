@@ -63,7 +63,7 @@ import { ParsingCarsMarksTunungStatistic } from './parsing_cars_marks_tunung_sta
       useFactory: (configService: ConfigService) => ({
         name: 'mysqlConnection',
         type: 'mysql',
-        host: configService.get('DB_HOST1'),
+        host: configService.get('sufikemmout.beget.app'),
         port: configService.get('DB_PORT1'),
         username: configService.get('DB_USERNAME1'),
         password: configService.get('DB_PASSWORD1'),
