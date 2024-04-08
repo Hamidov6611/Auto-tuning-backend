@@ -71,8 +71,8 @@ export class AutoModelService {
   }
 
   async remove(id: number) {
-    const model = await this.autoModelRepository.findOne({ where: { id } });
-    this.fileService.removeFile(model.img);
+    // const model = await this.autoModelRepository.findOne({ where: { id } });
+    // this.fileService.removeFile(model.img);
     return await this.autoModelRepository.delete(id);
   }
 }
