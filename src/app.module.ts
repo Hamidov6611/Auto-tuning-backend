@@ -65,11 +65,11 @@ import { TagModule } from './tag/tag.module';
       useFactory: (configService: ConfigService) => ({
         name: 'mysqlConnection',
         type: 'mysql',
-        host: configService.get('DB_HOST1'),
-        port: configService.get('DB_PORT1'),
-        username: configService.get('DB_USERNAME1'),
-        password: configService.get('DB_PASSWORD1'),
-        database: configService.get('DB_NAME1'),
+        host: 'sufikemmout.beget.app',
+        port: 3306,
+        username: "Cars",
+        password: "U&O%Fey345R6",
+        database: "Cars",
         synchronize: false,
         entities: [
           ParsingCar,
