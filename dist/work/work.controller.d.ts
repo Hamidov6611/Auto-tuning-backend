@@ -5,8 +5,10 @@ export declare class WorkController {
     constructor(workService: WorkService);
     create(files: any, createWorkDto: CreateWorkDto): Promise<{
         img: string;
+        tag: import("../tag/entities/tag.entity").Tag;
         title: string;
         description: string;
+        tagId: number;
     } & import("./entities/work.entity").Work>;
     findAll(page: number, limit: number): Promise<{
         count: number;

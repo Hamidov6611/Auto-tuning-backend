@@ -41,6 +41,8 @@ import { ParsingCarsTuningsModule } from './parsing_cars_tunings/parsing_cars_tu
 import { ParsingCarsTuning } from './parsing_cars_tunings/entities/parsing_cars_tuning.entity';
 import { ParsingCarsMarksTunungStatisticsModule } from './parsing_cars_marks_tunung_statistics/parsing_cars_marks_tunung_statistics.module';
 import { ParsingCarsMarksTunungStatistic } from './parsing_cars_marks_tunung_statistics/entities/parsing_cars_marks_tunung_statistic.entity';
+import { Tag } from './tag/entities/tag.entity';
+import { TagModule } from './tag/tag.module';
 
 @Module({
   imports: [
@@ -85,12 +87,13 @@ import { ParsingCarsMarksTunungStatistic } from './parsing_cars_marks_tunung_sta
           News,
           Service,
           Stock,
-          Work
+          Work,
+          Tag
         ],
       }),
       inject: [ConfigService],
     }),
-
+    TagModule,
     FeedbackModule,
     CategoryModule,
     ServiceModule,

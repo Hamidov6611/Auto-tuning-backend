@@ -18,16 +18,24 @@ const typeorm_1 = require("@nestjs/typeorm");
 const work_entity_1 = require("./entities/work.entity");
 const typeorm_2 = require("typeorm");
 const file_service_1 = require("../file/file.service");
+const tag_entity_1 = require("../tag/entities/tag.entity");
 let WorkService = class WorkService {
-    constructor(workRepository, fileService) {
+    constructor(workRepository, tagRepository, fileService) {
         this.workRepository = workRepository;
+        this.tagRepository = tagRepository;
         this.fileService = fileService;
     }
     async create(createWorkDto, picture) {
+        const tag = await this.tagRepository.findOne({
+            where: {
+                id: createWorkDto.tagId,
+            },
+        });
         const picturePath = this.fileService.createFile(file_service_1.FileType.IMAGE, picture);
         const news = await this.workRepository.save({
             ...createWorkDto,
             img: picturePath,
+            tag
         });
         return news;
     }
@@ -37,6 +45,7 @@ let WorkService = class WorkService {
         const work = await this.workRepository.find({
             take: limit,
             skip: skip,
+            relations: { tag: true },
             order: { createdAt: 'DESC' },
         });
         return {
@@ -49,6 +58,7 @@ let WorkService = class WorkService {
             where: {
                 id,
             },
+            relations: { tag: true },
         });
     }
     async update(id, updateWorkDto, picture) {
@@ -63,8 +73,6 @@ let WorkService = class WorkService {
         }
     }
     async remove(id) {
-        const work = await this.workRepository.findOne({ where: { id } });
-        this.fileService.removeFile(work.img);
         await this.workRepository.delete(id);
         return 'deleted!';
     }
@@ -86,7 +94,9 @@ exports.WorkService = WorkService;
 exports.WorkService = WorkService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(work_entity_1.Work)),
+    __param(1, (0, typeorm_1.InjectRepository)(tag_entity_1.Tag)),
     __metadata("design:paramtypes", [typeorm_2.Repository,
+        typeorm_2.Repository,
         file_service_1.FileService])
 ], WorkService);
 //# sourceMappingURL=work.service.js.map

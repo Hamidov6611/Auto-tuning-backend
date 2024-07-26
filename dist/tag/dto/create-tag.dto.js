@@ -9,29 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateWorkDto = void 0;
+exports.CreateTagDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateWorkDto {
+class CreateTagDto {
 }
-exports.CreateWorkDto = CreateWorkDto;
+exports.CreateTagDto = CreateTagDto;
 __decorate([
-    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(3),
     __metadata("design:type", String)
-], CreateWorkDto.prototype, "title", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(5),
-    __metadata("design:type", String)
-], CreateWorkDto.prototype, "description", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", String)
-], CreateWorkDto.prototype, "img", void 0);
-__decorate([
-    (0, class_validator_1.IsNotEmpty)(),
-    __metadata("design:type", Number)
-], CreateWorkDto.prototype, "tagId", void 0);
-//# sourceMappingURL=create-work.dto.js.map
+], CreateTagDto.prototype, "name", void 0);
+//# sourceMappingURL=create-tag.dto.js.map

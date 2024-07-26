@@ -6,22 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.WorkModule = void 0;
+exports.TagModule = void 0;
 const common_1 = require("@nestjs/common");
-const work_service_1 = require("./work.service");
-const work_controller_1 = require("./work.controller");
+const tag_service_1 = require("./tag.service");
+const tag_controller_1 = require("./tag.controller");
 const typeorm_1 = require("@nestjs/typeorm");
-const work_entity_1 = require("./entities/work.entity");
-const file_service_1 = require("../file/file.service");
-const tag_entity_1 = require("../tag/entities/tag.entity");
-let WorkModule = class WorkModule {
+const tag_entity_1 = require("./entities/tag.entity");
+let TagModule = class TagModule {
 };
-exports.WorkModule = WorkModule;
-exports.WorkModule = WorkModule = __decorate([
+exports.TagModule = TagModule;
+exports.TagModule = TagModule = __decorate([
     (0, common_1.Module)({
-        imports: [typeorm_1.TypeOrmModule.forFeature([work_entity_1.Work, tag_entity_1.Tag])],
-        controllers: [work_controller_1.WorkController],
-        providers: [work_service_1.WorkService, file_service_1.FileService],
+        imports: [
+            typeorm_1.TypeOrmModule.forFeature([tag_entity_1.Tag]),
+        ],
+        controllers: [tag_controller_1.TagController],
+        providers: [tag_service_1.TagService],
     })
-], WorkModule);
-//# sourceMappingURL=work.module.js.map
+], TagModule);
+//# sourceMappingURL=tag.module.js.map

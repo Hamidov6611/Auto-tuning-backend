@@ -49,6 +49,8 @@ const parsing_cars_tunings_module_1 = require("./parsing_cars_tunings/parsing_ca
 const parsing_cars_tuning_entity_1 = require("./parsing_cars_tunings/entities/parsing_cars_tuning.entity");
 const parsing_cars_marks_tunung_statistics_module_1 = require("./parsing_cars_marks_tunung_statistics/parsing_cars_marks_tunung_statistics.module");
 const parsing_cars_marks_tunung_statistic_entity_1 = require("./parsing_cars_marks_tunung_statistics/entities/parsing_cars_marks_tunung_statistic.entity");
+const tag_entity_1 = require("./tag/entities/tag.entity");
+const tag_module_1 = require("./tag/tag.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -95,11 +97,13 @@ exports.AppModule = AppModule = __decorate([
                         news_entity_1.News,
                         service_entity_1.Service,
                         stock_entity_1.Stock,
-                        work_entity_1.Work
+                        work_entity_1.Work,
+                        tag_entity_1.Tag
                     ],
                 }),
                 inject: [config_1.ConfigService],
             }),
+            tag_module_1.TagModule,
             feedback_module_1.FeedbackModule,
             category_module_1.CategoryModule,
             service_module_1.ServiceModule,

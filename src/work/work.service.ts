@@ -5,18 +5,26 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Work } from './entities/work.entity';
 import { Repository } from 'typeorm';
 import { FileService, FileType } from 'src/file/file.service';
+import { Tag } from 'src/tag/entities/tag.entity';
 
 @Injectable()
 export class WorkService {
   constructor(
     @InjectRepository(Work) private readonly workRepository: Repository<Work>,
+    @InjectRepository(Tag) private readonly tagRepository: Repository<Tag>,
     private fileService: FileService,
   ) {}
   async create(createWorkDto: CreateWorkDto, picture: any) {
+    const tag = await this.tagRepository.findOne({
+      where: {
+        id: createWorkDto.tagId,
+      },
+    })
     const picturePath = this.fileService.createFile(FileType.IMAGE, picture);
     const news = await this.workRepository.save({
       ...createWorkDto,
       img: picturePath,
+      tag
     });
     return news;
   }
@@ -27,6 +35,7 @@ export class WorkService {
     const work = await this.workRepository.find({
       take: limit,
       skip: skip,
+      relations: { tag: true },
       order: { createdAt: 'DESC' },
     });
     return {
@@ -40,6 +49,7 @@ export class WorkService {
       where: {
         id,
       },
+      relations: { tag: true },
     });
   }
 
@@ -62,8 +72,6 @@ export class WorkService {
   }
 
   async remove(id: number) {
-    const work = await this.workRepository.findOne({ where: { id } });
-    this.fileService.removeFile(work.img)
     await this.workRepository.delete(id);
     return 'deleted!';
   }

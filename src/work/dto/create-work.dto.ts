@@ -13,4 +13,7 @@ export class CreateWorkDto {
 
   @IsNotEmpty()
   img: string;
+
+  @IsNotEmpty()
+  tagId: number;
 }

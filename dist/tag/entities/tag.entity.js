@@ -9,42 +9,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Work = void 0;
-const tag_entity_1 = require("../../tag/entities/tag.entity");
+exports.Tag = void 0;
+const work_entity_1 = require("../../work/entities/work.entity");
 const typeorm_1 = require("typeorm");
-let Work = class Work {
+let Tag = class Tag {
 };
-exports.Work = Work;
+exports.Tag = Tag;
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'work_id' }),
+    (0, typeorm_1.PrimaryGeneratedColumn)(),
     __metadata("design:type", Number)
-], Work.prototype, "id", void 0);
+], Tag.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], Work.prototype, "title", void 0);
+], Tag.prototype, "name", void 0);
 __decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Work.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Work.prototype, "img", void 0);
-__decorate([
-    (0, typeorm_1.ManyToOne)(() => tag_entity_1.Tag, (tag) => tag.works),
-    (0, typeorm_1.JoinColumn)({ name: 'tagId' }),
-    __metadata("design:type", tag_entity_1.Tag)
-], Work.prototype, "tag", void 0);
+    (0, typeorm_1.OneToMany)(() => work_entity_1.Work, (work) => work.tag),
+    __metadata("design:type", Array)
+], Tag.prototype, "works", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)
-], Work.prototype, "createdAt", void 0);
+], Tag.prototype, "createdAt", void 0);
 __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
-], Work.prototype, "updatedAt", void 0);
-exports.Work = Work = __decorate([
-    (0, typeorm_1.Entity)('Work')
-], Work);
-//# sourceMappingURL=work.entity.js.map
+], Tag.prototype, "updatedAt", void 0);
+exports.Tag = Tag = __decorate([
+    (0, typeorm_1.Entity)("Tag")
+], Tag);
+//# sourceMappingURL=tag.entity.js.map
